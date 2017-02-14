@@ -1,0 +1,172 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    = favicon_link_tag 'favicon.png'
+    %title Private Flights - Rent a Jet - Empty Leg Flights
+    = csrf_meta_tags
+    = stylesheet_link_tag    'backend', media: 'all'
+    = favicon_link_tag 'fav.png'
+    %meta{name: "viewport", content: "width=device-width", "initial-scale": 1, "shrink-to-fit": "no"}
+    %meta{"http-equiv": "x-ua-compatible", "content": "ie=edge"}
+  %body
+    / Preloader
+    .preloader
+      .cssload-speeding-wheel
+    / End Preloader
+    / Wrapper
+    #wrapper
+      / Navigation
+      %nav.navbar.navbar-default.navbar-static-top{:style => "margin-bottom: 0"}
+        .navbar-header
+          %a.navbar-toggle.hidden-sm.hidden-md.hidden-lg{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :href => "javascript:void(0)"}
+            %i.ti-menu
+          .top-left-part
+            %a.logo{:href => "index.html"}
+              %i.glyphicon.glyphicon-fire>
+              \ 
+              %span.hidden-xs My Admin
+          %ul.nav.navbar-top-links.navbar-left.hidden-xs
+            %li.dropdown
+              %a.dropdown-toggle.waves-effect.waves-light{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-bell
+                %span.badge.badge-xs.badge-info 5
+              %ul.dropdown-menu.dropdown-alerts
+                %li
+                  %a{:href => "#"}
+                    %div
+                      %i.ti-comments.fa-fw
+                      New Comment
+                      %span.pull-right.text-muted.small 4 minutes ago
+                %li.divider
+                %li
+                  %a{:href => "#"}
+                    %div
+                      %i.ti-twitter.fa-fw
+                      3 New Followers
+                      %span.pull-right.text-muted.small 12 minutes ago
+                %li.divider
+                %li
+                  %a{:href => "#"}
+                    %div
+                      %i.ti-email.fa-fw
+                      Message Sent
+                      %span.pull-right.text-muted.small 4 minutes ago
+                %li.divider
+                %li
+                  %a{:href => "#"}
+                    %div
+                      %i.ti-pencil-alt.fa-fw
+                      New Task
+                      %span.pull-right.text-muted.small 4 minutes ago
+                %li.divider
+                %li
+                  %a{:href => "#"}
+                    %div
+                      %i.ti-upload.fa-fw
+                      Server Rebooted
+                      %span.pull-right.text-muted.small 4 minutes ago
+                %li.divider
+                %li
+                  %a.text-center{:href => "#"}
+                    %strong See All Alerts
+                    %i.fa.fa-angle-right
+              / /.dropdown-alerts
+          %ul.nav.navbar-top-links.navbar-right.pull-right
+            %li
+              %form.app-search.hidden-xs{:role => "search"}
+                %input.form-control{:placeholder => "Search...", :type => "text"}/
+                %a{:href => ""}
+                  %i.fa.fa-search
+            %li.dropdown
+              %a.dropdown-toggle.profile-pic{"data-toggle" => "dropdown", :href => "#"}
+                = image_tag 'users/hritik.jpg', alt: 'user-img', width: 36
+                %b.hidden-xs Maruti
+              %ul.dropdown-menu.dropdown-user
+                %li
+                  %a{:href => "#"}
+                    %i.ti-user
+                    My Profile
+                %li
+                  %a{:href => "#"}
+                    %i.ti-wallet
+                    My Balance
+                %li
+                  %a{:href => "#"}
+                    %i.ti-email
+                    Inbox
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"}
+                    %i.ti-settings
+                    Account Setting
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"}
+                    %i.fa.fa-power-off
+                    Logout
+      .navbar-default.sidebar.nicescroll{:role => "navigation"}
+        .sidebar-nav.navbar-collapse
+          %ul#side-menu.nav
+            %li.sidebar-search.hidden-sm.hidden-md.hidden-lg
+              .input-group.custom-search-form
+                %input.form-control{:placeholder => "Search...", :type => "text"}/
+                %span.input-group-btn
+                  %button.btn.btn-default{:type => "button"}
+                    %i.fa.fa-search
+              / /input-group
+            %li.nav-small-cap Main Menu
+            %li.active
+              %a.waves-effect{:href => "index.html"}
+                %i.glyphicon.glyphicon-fire.fa-fw
+                Dashboard
+                %span.fa.arrow
+              %ul.nav.nav-second-level
+                %li
+                  %a.active{:href => "index.html"} Dashboard 1
+                %li
+                  %a{:href => "index2.html"} Dashboard 2
+                %li
+                  %a{:href => "index3.html"} Dashboard 3
+            %li
+              %a.waves-effect{:href => "#"}
+                %i.ti-magnet.fa-fw
+                UI Elements
+                %span.fa.arrow
+                %span.label.label-rouded.label-purple.pull-right 13
+              %ul.nav.nav-second-level
+                %li
+                  %a{:href => "panels-wells.html"} Panels and Wells
+                %li
+                  %a{:href => "buttons.html"} Buttons
+                %li
+                  %a{:href => "notifications.html"} Notifications
+                %li
+                  %a{:href => "typography.html"} Typography
+                %li
+                  %a{:href => "grid.html"} Grid
+                %li
+                  %a{:href => "tabs.html"} Tabs
+                %li
+                  %a{:href => "modals.html"} Modals
+                %li
+                  %a{:href => "progressbars.html"} Progress Bars
+                %li
+                  %a{:href => "notification.html"} Notification 2
+                %li
+                  %a{:href => "carousel.html"} Carousel
+                %li
+                  %a{:href => "timeline.html"} Timeline
+                %li
+                  %a{:href => "nestable.html"} Nesteble
+                %li
+                  %a{:href => "bootstrap.html"} Other
+      .page-wrapper
+        .container-fluid
+          = yield
+      %footer.footer.text-center 2016 © Myadmin brought to you by themedesigner.in
+  = javascript_include_tag 'backend'
+
+
+
