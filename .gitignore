@@ -15,4 +15,13 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+config/database.yml
+/public/assets
+/public/system
+/public/documentation
+# simplecov coverage folder
+coverage
+# Ignore application configuration
+.env
 /vendor/assets/bower
+dump.rdb
