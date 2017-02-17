@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'devise_token_auth'
-
+gem 'cancan'
 gem 'fb_graph2'
 
 # Attachment
@@ -69,10 +69,11 @@ gem 'redis', '~> 3.0'
 # Cross Origin Allow
 gem 'rack-cors', :require => 'rack/cors'
 
-group :development do
+group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'ffaker'
   gem 'byebug'
 end
 

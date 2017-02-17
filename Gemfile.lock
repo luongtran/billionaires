@@ -61,6 +61,7 @@ GEM
       builder (>= 2.0.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancan (1.6.10)
     capybara (2.12.0)
       addressable
       mime-types (>= 1.16)
@@ -114,6 +115,7 @@ GEM
       multi_json
       rack-oauth2 (>= 1.1)
       url_safe_base64
+    ffaker (2.3.0)
     ffi (1.9.17)
     formatador (0.2.5)
     geokit (1.10.0)
@@ -357,6 +359,7 @@ DEPENDENCIES
   binding_of_caller
   braintree
   byebug
+  cancan
   capybara
   coffee-rails (~> 4.2)
   database_cleaner
@@ -366,6 +369,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fb_graph2
+  ffaker
   geokit
   geokit-rails
   guard-rspec

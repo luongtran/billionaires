@@ -33,7 +33,6 @@
     "vue": "^2.1.10",
     "font-awesome": "^4.7.0",
     "themify-icons": "^0.1.2",
-    "simple-line-icons": "^2.4.1",
     "weather-icons": "^2.0.10"
   }
 }

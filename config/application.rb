@@ -18,12 +18,18 @@ Bundler.require(*Rails.groups)
 
 module BillionairesJet
   class Application < Rails::Application
-    config.active_job.queue_adapter = :sidekiq
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
       end
     end
+
+    config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('app', 'jobs')
+    config.autoload_paths << Rails.root.join('app', 'services')
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

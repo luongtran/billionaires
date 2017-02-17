@@ -1,0 +1,629 @@
+---
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: "1.0.0"
+  title: Billionaires Jet API
+
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+host: 117.3.36.11:5000
+basePath: /api/v1
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+
+################################################################################
+#                                   Tags                                       #
+################################################################################
+tags:
+  - name: User
+  - name: Car
+  - name: Jet
+  - name: Yatch
+  - name: Booking
+  - name: Profile
+
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  access-token:
+    type: apiKey
+    in: header
+    name: access-token
+  client:
+    type: apiKey
+    in: header
+    name: client
+  uid:
+    type: apiKey
+    in: header
+    name: uid
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  user-id:
+    name: user-id
+    in: path
+    description: The user identifier number
+    type: integer
+    required: true
+  tag-name:
+    name: tag-name
+    in: path
+    description: Tag name
+    type: string
+    required: true
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /auth:
+    post:
+      tags:
+        - Authenticate
+      summary: Register with email
+      parameters:
+        - name: name
+          in: formData
+          required: true
+          type: string
+          description: test
+        - name: surname
+          in: formData
+          required: false
+          type: string
+          description: test
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: test
+        - name: password
+          in: formData
+          type: string
+          format: password
+          description: test
+          required: true
+        - name: password_confirmation
+          in: formData
+          type: string
+          format: password
+          description: test
+          required: true
+        - name: os
+          in: formData
+          type: string
+        - name: device_token
+          in: formData
+          type: string
+      responses:
+        200:
+          description: OK
+          headers:
+
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+    delete:
+      tags:
+        - Authenticate
+      summary: Delete account
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+              _access-token:
+                $ref: '#/definitions/AccessToken'
+  /auth/sign_in:
+    post:
+      summary: Sign in
+      tags:
+        - Authenticate
+      description: See the authenticated user's feed.
+      parameters:
+        - name: email
+          in: formData
+          description: The email of user
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: The password of user
+          required: true
+          type: string
+          format: password
+        - name: os
+          in: formData
+          description: Device os, accepted value are android, ios
+          type: string
+        - name: device_token
+          in: formData
+          description: Device token for push notification
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                $ref: '#/definitions/User'
+        "401":
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  example: "Invalid login credentials. Please try again."
+  /auth/password:
+    post:
+      tags:
+        - Authenticate
+      summary: Reset user password
+      hint: Facebook api V2 required both access-token and user-id, url ""
+      parameters:
+        - name: email
+          in: formData
+          description: The email of the user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: object
+  /auth/facebook:
+    post:
+      tags:
+        - Authenticate
+      summary: Authenticate via Facebook
+      parameters:
+        - name: token
+          in: formData
+          description: The access token
+          required: true
+          type: string
+        - name: fb_user_id
+          in: formData
+          description: The user_id of facebook
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              data:
+                type: object
+  /auth/sign_out:
+    delete:
+      tags:
+        - Authenticate
+      summary: Log out
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: os
+          in: formData
+          description: Current device os, accepted ios,android
+          type: string
+        - name: device_token
+          in: formData
+          description: Current device token
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+  /bookings:
+    get:
+      tags:
+        - Booking
+      summary: List all bookings
+      parameters:
+        - name: page
+          in: query
+          type: integer
+        - name: q
+          in: query
+          description: Search query
+          type: string
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        200:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Booking'
+              total:
+                type: integer
+              per:
+                type: integer
+  /bookings/{booking-id}:
+    put:
+      tags:
+        - Booking
+      summary: Update offer
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: booking-id
+          in: path
+          type: integer
+          required: true
+        - name: booking[price]
+          in: formData
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message: "OK"
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message: "Error"
+  /bookings/{booking-id}/unbook:
+    post:
+      tags:
+        - Booking
+      summary: Cancel offer
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: booking-id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message: "OK"
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message: "Error"
+  /bookings/{booking-id}/accept:
+    post:
+      tags:
+        - Booking
+      summary: Accept offer
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: booking-id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message: "OK"
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message: "Error"
+  /bookings/{booking-id}/decline:
+    post:
+      tags:
+        - Booking
+      summary: Decline offer
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: booking-id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message: "OK"
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              message: "Error"
+  /profile:
+    get:
+      tags:
+        - Profile
+      summary: Get profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        200:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/User'
+    put:
+      tags:
+        - Profile
+      summary: Update profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: profile[display_name]
+          in: formData
+          type: string
+        - name: profile[photo]
+          in: formData
+          type: file
+        - name: profile[gender]
+          in: formData
+          type: string
+        - name: profile[birthday]
+          in: formData
+          type: string
+          description: Birthday format yyyy-mm-dd
+        - name: profile[city]
+          in: formData
+          type: string
+        - name: profile[phone]
+          in: formData
+          type: string
+      responses:
+        200:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Profile updated"
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      email:
+        type: string
+      display_name:
+        type: string
+      last_sign_in_at:
+        type: time
+      is_verified:
+        type: boolean
+        description: email is verified
+      thumb:
+        type: string
+      medium:
+        type: string
+      origin:
+        description: Origin avatar url
+        type: string
+      content_type:
+        type: string
+
+  Profile:
+    type: object
+    properties:
+      display_name:
+        type: string
+      birthday:
+        type: date
+      gender:
+        type: string
+      phone:
+        type: string
+  Location:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      lat:
+        type: number
+      lng:
+        type: number
+  Attachment:
+    type: object
+    properties:
+      id:
+        type: integer
+      thumb:
+        type: string
+      medium:
+        type: string
+      origin:
+        description: Origin avatar url
+        type: string
+      content_type:
+        type: string
+  Service:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      category_id:
+        type: integer
+      description:
+        type: string
+      how_to_book:
+        type: string
+      price:
+        type: integer
+      currency:
+        type: string
+      price_with_currency:
+        type: string
+      avg_rating:
+        type: integer
+      created_at:
+        type: datetime
+      total_rating:
+        type: integer
+      is_favourited:
+        type: boolean
+      is_booked:
+        type: boolean
+      conversation_id:
+        type: integer
+      attachments:
+        type: array
+        items:
+          $ref: '#/definitions/Attachment'
+  Currency:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+  Category:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: text
+      id:
+        type: integer
+      attachments:
+        type: array
+        items:
+          $ref: '#/definitions/Attachment'
+
+  Conversation:
+    type: object
+    properties:
+      id:
+        type: integer
+      created_at:
+        type: datetime
+      owner:
+        $ref: '#/definitions/User'
+      receiver:
+        $ref: '#/definitions/User'
+      service:
+        $ref: '#/definitions/Service'
+      booking:
+        $ref: '#/definitions/Booking'
+  Message:
+    type: object
+    properties:
+      id:
+        type: integer
+      body:
+        type: string
+        example: Good morning
+      created_at:
+        type: datetime
+      attachment:
+        $ref: '#/definitions/Attachment'
+      user:
+        $ref: '#/definitions/User'
+  Feedback:
+    type: object
+    properties:
+      id:
+        type: integer
+      message:
+        type: string
+        example: Good morning
+      rating:
+        type: integer
+      user:
+        $ref: '#/definitions/User'
+  Booking:
+    type: object
+    properties:
+      id:
+        type: integer
+      status:
+        type: string
+        example: new
+      price:
+        type: integer
+      price_with_currency:
+        type: string
+      user:
+        $ref: '#/definitions/User'
+

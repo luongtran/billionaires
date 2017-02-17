@@ -13,5 +13,7 @@
   %body
     .site-wrapper
       .site-wrapper-inner
+        .col-md-6.col-md-offset-3
+          = render 'shared/flash_messages'
         = yield
   = javascript_include_tag 'application'

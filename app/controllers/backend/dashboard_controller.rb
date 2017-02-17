@@ -1,6 +1,5 @@
-class Backend::DashboardController < ApplicationController
+class Backend::DashboardController < Backend::BaseController
   before_action :authenticate_user!
-  layout 'backend'
 
   def index
   end

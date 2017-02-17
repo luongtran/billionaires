@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   namespace :backend, defaults: {format: 'html'} do
     root to: 'dashboard#index'
+    resource :profile, only: [:show, :update, :destroy] do
+      get :account_setting
+    end
   end
 
   namespace :api, defaults: {format: :json} do
@@ -12,6 +15,8 @@ Rails.application.routes.draw do
         registrations:      'devise_overrides/registrations',
         sessions:           'devise_overrides/sessions'
       }
+      resource :profile, only: [:show, :update, :destroy]
     end
+    match "*path", to: "base#render_endpoint_not_exists", via: :all
   end
 end
