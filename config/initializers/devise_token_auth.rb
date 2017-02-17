@@ -13,8 +13,8 @@ DeviseTokenAuth.setup do |config|
   # After this limit is reached, the oldest tokens will be removed.
   config.max_number_of_devices = 10
 
-  config.default_confirm_success_url = '/'
-  config.default_password_reset_url = '/'
+  config.default_confirm_success_url = '/confirm_success'
+  config.default_password_reset_url = '/password-reset'
 
   config.remove_tokens_after_password_reset = true
 

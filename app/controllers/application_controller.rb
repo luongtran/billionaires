@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_confirmation_path_for(resource_name, resource)
+    if signed_in?(resource_name)
+      signed_in_root_path(resource)
+    else
+      welcome_path
+    end
+  end
+
   def after_inactive_sign_up_path_for(resource)
     new_user_session_path
   end

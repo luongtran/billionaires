@@ -11,6 +11,8 @@ require "action_view/railtie"
 # require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require 'wicked_pdf'
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,6 +27,8 @@ module BillionairesJet
         resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
       end
     end
+
+    config.middleware.use WickedPdf::Middleware
 
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('app', 'jobs')

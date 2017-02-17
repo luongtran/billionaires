@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     end
     match "*path", to: "base#render_endpoint_not_exists", via: :all
   end
+
+  controller :home do
+    get :welcome, path: 'pages/welcome'
+  end
 end
