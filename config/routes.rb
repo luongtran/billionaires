@@ -15,10 +15,16 @@ Rails.application.routes.draw do
         registrations:      'devise_overrides/registrations',
         sessions:           'devise_overrides/sessions'
       }
+
+      controller :registrations do
+        post :facebook, path: 'auth/facebook'
+      end
+
       resource :profile, only: [:show, :update, :destroy]
     end
     match "*path", to: "base#render_endpoint_not_exists", via: :all
   end
+
 
   controller :home do
     get :welcome, path: 'pages/welcome'

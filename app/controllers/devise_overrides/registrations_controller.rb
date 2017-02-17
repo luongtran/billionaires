@@ -9,14 +9,6 @@ class DeviseOverrides::RegistrationsController < DeviseTokenAuth::RegistrationsC
     end
   end
 
-  def facebook
-
-  end
-
-  def twitter
-
-  end
-
   protected
 
   def render_create_success
@@ -24,6 +16,7 @@ class DeviseOverrides::RegistrationsController < DeviseTokenAuth::RegistrationsC
       json[:data] = resource_data(resource_json: @resource.token_validation_response)
     end
   end
+
   def render_create_error
     render_error(
       Api::Status::BAD_PARAMETERS,

@@ -101,12 +101,12 @@ paths:
           format: password
           description: test
           required: true
-        - name: os
+        - name: device[os]
           in: formData
-          type: string
-        - name: device_token
+          description: Device os, accepted value are android, ios
+        - name: device[token]
           in: formData
-          type: string
+          description: Device token
       responses:
         200:
           description: OK
@@ -153,14 +153,12 @@ paths:
           required: true
           type: string
           format: password
-        - name: os
+        - name: device[os]
           in: formData
           description: Device os, accepted value are android, ios
-          type: string
-        - name: device_token
+        - name: device[token]
           in: formData
-          description: Device token for push notification
-          type: string
+          description: Device token
       responses:
         "200":
           description: OK
@@ -208,7 +206,7 @@ paths:
         - Authenticate
       summary: Authenticate via Facebook
       parameters:
-        - name: token
+        - name: fb_token
           in: formData
           description: The access token
           required: true
@@ -218,6 +216,12 @@ paths:
           description: The user_id of facebook
           required: true
           type: string
+        - name: device[os]
+          in: formData
+          description: Device os
+        - name: device[token]
+          in: formData
+          description: Device token
       responses:
         '200':
           description: OK
@@ -252,205 +256,8 @@ paths:
           schema:
             type: object
             properties:
-              status:
-                type: string
               message:
                 type: string
-  /bookings:
-    get:
-      tags:
-        - Booking
-      summary: List all bookings
-      parameters:
-        - name: page
-          in: query
-          type: integer
-        - name: q
-          in: query
-          description: Search query
-          type: string
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      responses:
-        200:
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/Booking'
-              total:
-                type: integer
-              per:
-                type: integer
-  /bookings/{booking-id}:
-    put:
-      tags:
-        - Booking
-      summary: Update offer
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      parameters:
-        - name: booking-id
-          in: path
-          type: integer
-          required: true
-        - name: booking[price]
-          in: formData
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Success
-          schema:
-            type: object
-            properties:
-              message: "OK"
-        400:
-          description: Error
-          schema:
-            type: object
-            properties:
-              message: "Error"
-  /bookings/{booking-id}/unbook:
-    post:
-      tags:
-        - Booking
-      summary: Cancel offer
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      parameters:
-        - name: booking-id
-          in: path
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Success
-          schema:
-            type: object
-            properties:
-              message: "OK"
-        400:
-          description: Error
-          schema:
-            type: object
-            properties:
-              message: "Error"
-  /bookings/{booking-id}/accept:
-    post:
-      tags:
-        - Booking
-      summary: Accept offer
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      parameters:
-        - name: booking-id
-          in: path
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Success
-          schema:
-            type: object
-            properties:
-              message: "OK"
-        400:
-          description: Error
-          schema:
-            type: object
-            properties:
-              message: "Error"
-  /bookings/{booking-id}/decline:
-    post:
-      tags:
-        - Booking
-      summary: Decline offer
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      parameters:
-        - name: booking-id
-          in: path
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Success
-          schema:
-            type: object
-            properties:
-              message: "OK"
-        400:
-          description: Error
-          schema:
-            type: object
-            properties:
-              message: "Error"
-  /profile:
-    get:
-      tags:
-        - Profile
-      summary: Get profile
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      responses:
-        200:
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/User'
-    put:
-      tags:
-        - Profile
-      summary: Update profile
-      security:
-      - access-token: []
-        client: []
-        uid: []
-      parameters:
-        - name: profile[display_name]
-          in: formData
-          type: string
-        - name: profile[photo]
-          in: formData
-          type: file
-        - name: profile[gender]
-          in: formData
-          type: string
-        - name: profile[birthday]
-          in: formData
-          type: string
-          description: Birthday format yyyy-mm-dd
-        - name: profile[city]
-          in: formData
-          type: string
-        - name: profile[phone]
-          in: formData
-          type: string
-      responses:
-        200:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                example: "Profile updated"
-
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
@@ -462,45 +269,12 @@ definitions:
         type: integer
       email:
         type: string
-      display_name:
+      name:
+        type: string
+      surname:
         type: string
       last_sign_in_at:
         type: time
-      is_verified:
-        type: boolean
-        description: email is verified
-      thumb:
-        type: string
-      medium:
-        type: string
-      origin:
-        description: Origin avatar url
-        type: string
-      content_type:
-        type: string
-
-  Profile:
-    type: object
-    properties:
-      display_name:
-        type: string
-      birthday:
-        type: date
-      gender:
-        type: string
-      phone:
-        type: string
-  Location:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      lat:
-        type: number
-      lng:
-        type: number
   Attachment:
     type: object
     properties:
@@ -515,115 +289,3 @@ definitions:
         type: string
       content_type:
         type: string
-  Service:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      category_id:
-        type: integer
-      description:
-        type: string
-      how_to_book:
-        type: string
-      price:
-        type: integer
-      currency:
-        type: string
-      price_with_currency:
-        type: string
-      avg_rating:
-        type: integer
-      created_at:
-        type: datetime
-      total_rating:
-        type: integer
-      is_favourited:
-        type: boolean
-      is_booked:
-        type: boolean
-      conversation_id:
-        type: integer
-      attachments:
-        type: array
-        items:
-          $ref: '#/definitions/Attachment'
-  Currency:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-  Category:
-    type: object
-    properties:
-      name:
-        type: string
-      description:
-        type: text
-      id:
-        type: integer
-      attachments:
-        type: array
-        items:
-          $ref: '#/definitions/Attachment'
-
-  Conversation:
-    type: object
-    properties:
-      id:
-        type: integer
-      created_at:
-        type: datetime
-      owner:
-        $ref: '#/definitions/User'
-      receiver:
-        $ref: '#/definitions/User'
-      service:
-        $ref: '#/definitions/Service'
-      booking:
-        $ref: '#/definitions/Booking'
-  Message:
-    type: object
-    properties:
-      id:
-        type: integer
-      body:
-        type: string
-        example: Good morning
-      created_at:
-        type: datetime
-      attachment:
-        $ref: '#/definitions/Attachment'
-      user:
-        $ref: '#/definitions/User'
-  Feedback:
-    type: object
-    properties:
-      id:
-        type: integer
-      message:
-        type: string
-        example: Good morning
-      rating:
-        type: integer
-      user:
-        $ref: '#/definitions/User'
-  Booking:
-    type: object
-    properties:
-      id:
-        type: integer
-      status:
-        type: string
-        example: new
-      price:
-        type: integer
-      price_with_currency:
-        type: string
-      user:
-        $ref: '#/definitions/User'
-

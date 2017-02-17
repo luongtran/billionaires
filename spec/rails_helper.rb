@@ -7,7 +7,9 @@ require 'rspec/rails'
 require "paperclip/matchers"
 require 'devise'
 require 'sidekiq/testing'
+require 'capybara/rspec'
 Sidekiq::Testing.fake!
+
 include ActionDispatch::TestProcess
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -25,6 +27,18 @@ include ActionDispatch::TestProcess
 # require only the support files necessary.
 #
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+
+# Capybara.current_driver = :selenium
+# Selenium::WebDriver::Chrome.driver_path = "#{Rails.root}/bin/chromedriver"
+
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(
+#     app,
+#     browser: :chrome
+#   )
+# end
+
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -63,7 +77,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.after :each do
+  config.append_after :each do
     DatabaseCleaner.clean
   end
 
@@ -71,7 +85,6 @@ RSpec.configure do |config|
   config.include Request::Helper, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Paperclip::Shoulda::Matchers
-
   config.after(:suite) do
     if Rails.env.test?
       test_uploads = Dir["#{Rails.root}/public/test"]

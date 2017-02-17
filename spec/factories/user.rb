@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    name { FFaker::Internet.name }
+    name { FFaker::Name.name }
+    surname { FFaker::Name.first_name }
     email { FFaker::Internet.email }
     trait :admin do
       role 'admin'
