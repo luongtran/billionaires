@@ -1,4 +1,5 @@
 class Backend::UsersController < Backend::BaseController
+  authorize_resource
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
