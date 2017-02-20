@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include PgSearch
+  pg_search_scope :index_search, :against => [:name, :surname, :email], :using => [:tsearch]
   VALID_ROLES = %w(admin user customer editor).freeze
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable

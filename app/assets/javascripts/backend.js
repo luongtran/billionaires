@@ -5,5 +5,9 @@
 //= require raphael/raphael
 //= require morris.js/morris
 //= require jquery.nicescroll
-//= require myadmin
 //= require dashboard
+
+$(function() {
+  $(".preloader").fadeOut();
+  $('#side-menu').metisMenu();
+});

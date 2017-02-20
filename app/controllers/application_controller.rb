@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include DeviseTokenAuth::Concerns::SetUserByToken
   include Api::ErrorRenderer
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, if: :devise_controller?
@@ -7,6 +6,12 @@ class ApplicationController < ActionController::Base
   layout :set_layout
 
   protected
+
+  def paging_params
+    params[:page] ||= 1
+    params[:per] ||= 20
+    params
+  end
 
   def after_sign_in_path_for(resource)
     case resource.role

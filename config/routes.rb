@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resource :profile, only: [:show, :update, :destroy] do
       get :account_setting
     end
+    resources :users do
+    end
   end
 
   namespace :api, defaults: {format: :json} do

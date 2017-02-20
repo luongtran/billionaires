@@ -214,6 +214,10 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
     pg (0.19.0)
+    pg_search (1.0.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -392,6 +396,7 @@ DEPENDENCIES
   kaminari
   paperclip
   pg (~> 0.18)
+  pg_search
   puma (~> 3.0)
   pushmeup
   rack-cors

@@ -23,6 +23,7 @@
         = render 'shared/backend_sidebar'
       #page-wrapper
         .container-fluid
+          = render 'shared/flash_messages'
           = yield
       %footer.footer.text-center 2016 © Myadmin brought to you by themedesigner.in
   = javascript_include_tag 'backend'

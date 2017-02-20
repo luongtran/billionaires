@@ -8,8 +8,9 @@ class Ability
       can :manage, :all
     elsif user.user?
       can :read, :all
+      can :manage, Device, user_id: user.id
     else
-      can :read, :all
+      can :manage, Device, user_id: user.id
     end
 
   end
