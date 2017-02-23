@@ -1,4 +1,4 @@
-describe "the signin process", :type => :feature do
+describe "the signin process", type: :feature do
   before :each do
     @user = FactoryGirl.create :user, :confirmed
   end

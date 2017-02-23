@@ -1,0 +1,23 @@
+= simple_form_for ['backend', @car] do |f|
+  .row
+    .col-sm-4
+      = f.input :brand
+    .col-sm-4
+      = f.input :model
+    .col-sm-4
+      = f.input :type
+  .row
+    .col-sm-12
+      = f.input :description
+  .row
+    .col-sm-6
+      = f.input :seats
+    .col-sm-6
+      = f.input :power
+  .row
+    .col-sm-6
+      = f.input :engine
+    .col-sm-6
+      = f.input :max_speed
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

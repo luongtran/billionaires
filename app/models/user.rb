@@ -29,5 +29,4 @@ class User < ApplicationRecord
   def full_name
     [name,surname].join(' ')
   end
-
 end

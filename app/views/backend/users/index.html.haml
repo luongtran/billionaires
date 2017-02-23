@@ -35,8 +35,8 @@
             - @users.each do |user|
               %tr
                 %td= user.id
-                %td= user.name.humanize
-                %td= user.surname.humanize
+                %td= user.name.try :humanize
+                %td= user.surname.try :humanize
                 %td
                   = link_to user.email, "maito:#{user.email}"
                 %td
@@ -52,4 +52,9 @@
                     = link_to backend_user_path(user), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
                       %i.fa.fa-trash
                       Destroy
+                    - if can? :push_notification, user
+                      = link_to notification_modal_backend_user_path(user), data: {method: 'post', remote: true}, class: 'btn btn-sm btn-warning' do
+                        %i.fa.fa-send
+                        Push notification
+      .push-notification
       = paginate @users

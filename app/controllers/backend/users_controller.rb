@@ -16,6 +16,20 @@ class Backend::UsersController < Backend::BaseController
   def show
   end
 
+  def notification_modal
+    @user = User.find params[:id]
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def push_notification
+    @user = User.find params[:id]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @user = User.new user_params
     if @user.save
@@ -49,7 +63,7 @@ class Backend::UsersController < Backend::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:name, :surname, :email, :password, :role)
+    params.require(:user).permit(:name, :surname, :email, :role)
   end
 
 end

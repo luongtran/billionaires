@@ -8,7 +8,7 @@ class Api::BaseController < ApplicationController
       log_server_error(_e, {
         current_user: current_user.try(:id)
       })
-      render_server_errror
+      render_server_error
     end
 
     rescue_from Api::UnexpectedError do |e|
@@ -24,7 +24,7 @@ class Api::BaseController < ApplicationController
     # All the requests should be validate and catching error properly
     # Otherwise this is technical problem
     rescue_from ActiveRecord::RecordInvalid do |_e|
-      render_server_errror
+      render_server_error
     end
   end
 

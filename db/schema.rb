@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20170215078499) do
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
-    t.string   "car_type"
-    t.string   "brand_name"
-    t.string   "model_name"
+    t.string   "type"
+    t.string   "brand"
+    t.string   "model"
     t.text     "description"
     t.integer  "seats"
     t.integer  "power"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170215078499) do
   end
 
   create_table "jets", force: :cascade do |t|
-    t.string   "jet_type"
-    t.string   "brand_name"
-    t.string   "model_name"
+    t.string   "type"
+    t.string   "brand"
+    t.string   "model"
     t.text     "description"
     t.string   "classification"
     t.integer  "seats"
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 20170215078499) do
   end
 
   create_table "yatches", force: :cascade do |t|
-    t.string   "yatch_type"
-    t.string   "brand_name"
-    t.string   "model_name"
+    t.string   "type"
+    t.string   "brand"
+    t.string   "model"
     t.text     "description"
     t.string   "classification"
     t.integer  "seats"

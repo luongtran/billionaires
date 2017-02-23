@@ -258,6 +258,23 @@ paths:
             properties:
               message:
                 type: string
+  /profile:
+    get:
+      tags:
+        - Profile
+      summary: Profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################

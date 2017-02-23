@@ -42,7 +42,7 @@ gem 'aws-sdk'
 gem 'haml-rails'
 
 # Pagination
-gem 'kaminari'
+# gem 'kaminari'
 
 # Background running
 gem 'sidekiq'
@@ -72,6 +72,9 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # PDF generate
 gem 'wicked_pdf'
+
+# Admin
+gem 'rails_admin', '~> 1.0'
 
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

@@ -1,0 +1,54 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Car management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Cars', backend_cars_path
+      %li.active All cars
+  / /.col-lg-12
+/ row
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing cars
+      .box-header
+        = form_tag backend_cars_path, method: :get, class: 'form-inline' do
+          .form-group
+            = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+          = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        = link_to new_backend_car_path, class: 'btn btn-primary btn-top-right' do
+          %i.fa.fa-plus
+          New car
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Brand
+              %th Model
+              %th Type
+              %th Seats
+              %th Action...
+          %tbody
+            - @cars.each do |car|
+              %tr
+                %td= car.id
+                %td= car.brand
+                %td= car.model
+                %td= car.type
+                %td= car.seats
+                %td
+                  .btn-group
+                    = link_to edit_backend_car_path(car), class: "btn btn-primary btn-sm" do
+                      %i.fa.fa-pencil
+                      Edit
+                    = link_to backend_car_path(car), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-car
+                      Show
+                    = link_to backend_car_path(car), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      = paginate @cars

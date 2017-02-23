@@ -20,7 +20,7 @@ module Api
       render_error Api::Status::ACCESS_TOKEN_INVALID
     end
 
-    def render_server_errror
+    def render_server_error
       render_error(
         Api::Status::SERVER_ERROR,
         "An server error is occurred."
@@ -41,7 +41,7 @@ module Api
         response_body[:errors] = errors
       end
       # All response status code should be 200 OK even it was an error!
-      render json: response_body, status: 200
+      render json: response_body, status: http_status_code
     end
 
     def render_success(message = nil)

@@ -2,13 +2,20 @@ Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :users
 
-  namespace :backend, defaults: {format: 'html'} do
+  namespace :backend do
     root to: 'dashboard#index'
     resource :profile, only: [:show, :update, :destroy] do
       get :account_setting
     end
     resources :users do
+      member do
+        post :notification_modal
+        post :push_notification
+      end
     end
+    resources :cars
+    resources :jets
+    resources :yatches
   end
 
   namespace :api, defaults: {format: :json} do
@@ -22,7 +29,8 @@ Rails.application.routes.draw do
         post :facebook, path: 'auth/facebook'
       end
 
-      resource :profile, only: [:show, :update, :destroy]
+      resource :profile, only: [:show, :update, :destroy] do
+      end
     end
     match "*path", to: "base#render_endpoint_not_exists", via: :all
   end

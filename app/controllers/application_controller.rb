@@ -5,12 +5,24 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   layout :set_layout
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render_not_found
+  end
+
   protected
 
   def paging_params
     params[:page] ||= 1
     params[:per] ||= 20
     params
+  end
+
+  def render_not_found
+    respond_to do |format|
+      format.html { render 'errors/not_found', status: 404 }
+      format.js { render json: { error: "Record not found" }, status: 404 }
+      format.json { render_error Api::Status::RESOURCE_NOT_FOUND }
+    end
   end
 
   def after_sign_in_path_for(resource)

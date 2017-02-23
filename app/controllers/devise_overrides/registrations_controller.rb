@@ -20,21 +20,31 @@ class DeviseOverrides::RegistrationsController < DeviseTokenAuth::RegistrationsC
   def render_create_error
     render_error(
       Api::Status::BAD_PARAMETERS,
-      I18n.t("errors.messages.not_saved", count: @resource.errors.size, resource: @resource.class_name)
-      )
+      I18n.t("errors.messages.not_saved", count: @resource.errors.size, resource: 'user'),
+      @resource.errors.full_messages)
   end
 
   def render_create_error_email_already_exists
-    render_success
+    render_error(
+      Api::Status::BAD_PARAMETERS,
+      I18n.t("errors.messages.not_saved", count: @resource.errors.size, resource: 'user'),
+      @resource.errors.full_messages)
   end
   def render_update_success
-    render_success
+    render_success 'User has been updated' do |json|
+      json[:data] = resource_data(resource_json: resource_data)
+    end
   end
   def render_update_error
-    render_success
+    render_error(
+      Api::Status::BAD_PARAMETERS,
+      I18n.t("errors.messages.not_saved", count: @resource.errors.size, resource: 'user'),
+      @resource.errors.full_messages)
   end
   def render_update_error_user_not_found
-    render_success
+    render_error(
+      Api::Status::BAD_PARAMETERS,
+      'User not found')
   end
 
 
