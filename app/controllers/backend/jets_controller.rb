@@ -33,6 +33,12 @@ class Backend::JetsController < Backend::BaseController
     jets = jets.index_search(params[:q]) if params[:q].present?
     jets = jets.page(paging_params[:page]).per(paging_params[:per])
     @jets = jets
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="jets_export_'+ Time.now.strftime("%d_%b_%Y") +'.xlsx"'
+      }
+    end
   end
 
   def show
@@ -45,6 +51,6 @@ class Backend::JetsController < Backend::BaseController
   end
 
   def jet_params
-    params.require(:jet).permit(:type,:model,:seats)
+    params.require(:jet).permit(:brand, :type, :model, :seats, :description, :range, :luggage_capacity)
   end
 end

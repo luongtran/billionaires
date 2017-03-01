@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  green_cell =  s.add_style  bg_color: "38B682", fg_color: "E9FFF2", sz: 16, alignment: { horizontal: :center }
+  center_cell = s.add_style alignment: { horizontal: :center }
+  wb.add_worksheet(name: "Cars") do |sheet|
+    sheet.add_row ['ID','Brand','Model','Seats','Type','Seats'],
+      style: [green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell]
+    @yatches.each do |yatch|
+      sheet.add_row [yatch.id, yatch.brand, yatch.model, yatch.seats, yatch.type],
+      style: [center_cell]
+    end
+  end
+end

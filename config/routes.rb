@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :backend do
-    root to: 'dashboard#index'
+    get :dashboard, to: 'dashboard#index'
     resource :profile, only: [:show, :update, :destroy] do
       get :account_setting
     end
@@ -13,7 +13,11 @@ Rails.application.routes.draw do
         post :push_notification
       end
     end
-    resources :cars
+    resources :cars do
+      collection do
+        post :import
+      end
+    end
     resources :jets
     resources :yatches
   end

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource.role
     when 'admin'
-      backend_root_path
+      backend_dashboard_path
     when 'user','customer'
       backend_profile_path
     else

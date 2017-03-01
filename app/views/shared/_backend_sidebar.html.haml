@@ -10,22 +10,22 @@
         / /input-group
       %li.nav-small-cap Main Menu
       %li
-        %a.waves-effect{href: "/backend"}
+        = link_to backend_dashboard_path do
           %i.glyphicon.glyphicon-fire.fa-fw
           Dashboard
       %li
-        %a.waves-effect{href: "/backend/users"}
-          %i.ti-widget.fa-fw
+        = link_to backend_users_path do
+          %i.fa.fa-user-circle.fa-fw
           User management
       %li
-        %a.waves-effect{href: "/backend/jets"}
-          %i.ti-widget.fa-fw
+        = link_to backend_jets_path do
+          %i.fa.fa-plane.fa-fw
           Jet management
       %li
-        %a.waves-effect{href: "/backend/cars"}
-          %i.ti-widget.fa-fw
+        = link_to backend_cars_path do
+          %i.fa.fa-car.fa-fw
           Car management
       %li
-        %a.waves-effect{href: "/backend/yatches"}
-          %i.ti-widget.fa-fw
+        = link_to backend_yatches_path do
+          %i.fa.fa-ship.fa-fw
           Yatch management

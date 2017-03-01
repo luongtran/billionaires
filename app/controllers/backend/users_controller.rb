@@ -7,6 +7,12 @@ class Backend::UsersController < Backend::BaseController
     users = users.index_search(params[:q]) if params[:q].present?
     users = users.page(paging_params[:page]).per(paging_params[:per])
     @users = users
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="users_export_'+ Time.now.strftime("%d_%b_%Y") +'.xlsx"'
+      }
+    end
   end
 
   def new

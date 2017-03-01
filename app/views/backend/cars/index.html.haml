@@ -13,14 +13,18 @@
   .col-lg-12
     .white-box
       %h3 Listing cars
-      .box-header
-        = form_tag backend_cars_path, method: :get, class: 'form-inline' do
-          .form-group
-            = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
-          = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
-        = link_to new_backend_car_path, class: 'btn btn-primary btn-top-right' do
-          %i.fa.fa-plus
-          New car
+      .box-header.row
+        .col-md-6
+          = form_tag backend_cars_path, method: :get, class: 'form-inline' do
+            .form-group
+              = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+            = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_car_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New car
+            = link_to 'Export', backend_cars_path(format: 'xlsx'), class: 'btn btn-primary'
       .table-responsive
         %table.table.table-hover.table-striped.table-bordered
           %thead
@@ -30,7 +34,10 @@
               %th Model
               %th Type
               %th Seats
-              %th Action...
+              %th Engine
+              %th Power
+              %th Top speed
+              %th.pull-right Action...
           %tbody
             - @cars.each do |car|
               %tr
@@ -39,7 +46,10 @@
                 %td= car.model
                 %td= car.type
                 %td= car.seats
-                %td
+                %td= car.engine
+                %td= car.power
+                %td= car.max_speed
+                %td.pull-right
                   .btn-group
                     = link_to edit_backend_car_path(car), class: "btn btn-primary btn-sm" do
                       %i.fa.fa-pencil
@@ -51,4 +61,6 @@
                       %i.fa.fa-trash
                       Destroy
       .push-notification
+      .import
+        = render 'backend/cars/import'
       = paginate @cars

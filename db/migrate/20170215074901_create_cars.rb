@@ -9,6 +9,8 @@ class CreateCars < ActiveRecord::Migration[5.0]
       t.integer :power
       t.integer :max_speed
       t.string :engine
+      t.string :fuel_on_city
+      t.float :daily_rental
 
       t.timestamps
     end

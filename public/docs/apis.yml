@@ -275,6 +275,48 @@ paths:
             properties:
               message:
                 type: string
+    put:
+      tags:
+        - Profile
+      summary: Update Profile
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: user[name]
+          in: formData
+          description: The name of user
+          required: true
+          type: string
+        - name: user[surname]
+          in: formData
+          description: The surname of user
+          type: string
+        - name: user[phone]
+          in: formData
+          description: The phone of user
+          type: string
+        - name: user[company_name]
+          in: formData
+          description: The company_name of user
+          type: string
+        - name: user[organisation]
+          in: formData
+          description: The organisation of user
+          type: string
+        - name: user[website]
+          in: formData
+          description: The website of user
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################

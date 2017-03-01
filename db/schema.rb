@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215078499) do
+ActiveRecord::Schema.define(version: 20170228033725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "attachmentable_type"
+    t.integer  "attachmentable_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["attachmentable_type", "attachmentable_id"], name: "index_attachments_on_attachmentable_type_and_attachmentable_id", using: :btree
+  end
 
   create_table "cars", force: :cascade do |t|
     t.string   "type"
@@ -24,8 +36,24 @@ ActiveRecord::Schema.define(version: 20170215078499) do
     t.integer  "power"
     t.integer  "max_speed"
     t.string   "engine"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "fuel_on_city"
+    t.float    "daily_rental"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "devices", force: :cascade do |t|
@@ -36,6 +64,24 @@ ActiveRecord::Schema.define(version: 20170215078499) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "token"], name: "index_devices_on_user_id_and_token", unique: true, using: :btree
     t.index ["user_id"], name: "index_devices_on_user_id", using: :btree
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.string   "status"
+    t.string   "number"
+    t.string   "origin_airport_code"
+    t.string   "destination_airport_code"
+    t.string   "origin"
+    t.string   "destination"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "actual_start_at"
+    t.datetime "actual_end_at"
+    t.text     "logs"
+    t.integer  "jet_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["jet_id"], name: "index_flights_on_jet_id", using: :btree
   end
 
   create_table "jets", force: :cascade do |t|
@@ -49,6 +95,31 @@ ActiveRecord::Schema.define(version: 20170215078499) do
     t.integer  "luggage_capacity"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "distance"
+    t.string   "address"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.string   "locatable_type"
+    t.integer  "locatable_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["city_id"], name: "index_locations_on_city_id", using: :btree
+    t.index ["country_id"], name: "index_locations_on_country_id", using: :btree
+    t.index ["lat", "lng"], name: "index_locations_on_lat_and_lng", using: :btree
+    t.index ["locatable_type", "locatable_id"], name: "index_locations_on_locatable_type_and_locatable_id", using: :btree
+    t.index ["state_id"], name: "index_locations_on_state_id", using: :btree
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,5 +167,6 @@ ActiveRecord::Schema.define(version: 20170215078499) do
     t.datetime "updated_at",       null: false
   end
 
+  add_foreign_key "cities", "states"
   add_foreign_key "devices", "users"
 end

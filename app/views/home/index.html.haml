@@ -4,8 +4,9 @@
       %h3.masthead-brand BillionairesJet
       %nav.nav.nav-masthead
         %a.nav-link.active{:href => "#"} Home
+        %a.nav-link{:href => "/documentation"} Documents
         - if user_signed_in?
-          %a.nav-link{:href => "/backend"} Backend
+          = link_to 'Backend', backend_dashboard_path, class: 'nav-link'
           %p
             Logged in as
             = succeed ',' do

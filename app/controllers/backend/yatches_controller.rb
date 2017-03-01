@@ -33,6 +33,12 @@ class Backend::YatchesController < Backend::BaseController
     yatches = yatches.index_search(params[:q]) if params[:q].present?
     yatches = yatches.page(paging_params[:page]).per(paging_params[:per])
     @yatches = yatches
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="yatches_export_'+ Time.now.strftime("%d_%b_%Y") +'.xlsx"'
+      }
+    end
   end
 
   def show

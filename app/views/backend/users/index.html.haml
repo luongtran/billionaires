@@ -13,14 +13,18 @@
   .col-lg-12
     .white-box
       %h3 Listing users
-      .box-header
-        = form_tag backend_users_path, method: :get, class: 'form-inline' do
-          .form-group
-            = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
-          = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
-        = link_to new_backend_user_path, class: 'btn btn-primary btn-top-right' do
-          %i.fa.fa-plus
-          New user
+      .box-header.row
+        .col-md-6
+          = form_tag backend_users_path, method: :get, class: 'form-inline' do
+            .form-group
+              = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+            = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_user_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New user
+            = link_to 'Export', backend_users_path(format: 'xlsx'), class: 'btn btn-primary'
       .table-responsive
         %table.table.table-hover.table-striped.table-bordered
           %thead

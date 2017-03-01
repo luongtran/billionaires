@@ -13,14 +13,18 @@
   .col-lg-12
     .white-box
       %h3 Listing yatches
-      .box-header
-        = form_tag backend_yatches_path, method: :get, class: 'form-inline' do
-          .form-group
-            = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
-          = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
-        = link_to new_backend_yatch_path, class: 'btn btn-primary btn-top-right' do
-          %i.fa.fa-plus
-          New yatch
+      .box-header.row
+        .col-md-6
+          = form_tag backend_yatches_path, method: :get, class: 'form-inline' do
+            .form-group
+              = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+            = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_yatch_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New yatch
+            = link_to 'Export', backend_yatches_path(format: 'xlsx'), class: 'btn btn-primary'
       .table-responsive
         %table.table.table-hover.table-striped.table-bordered
           %thead
@@ -30,7 +34,7 @@
               %th Model
               %th Type
               %th Seats
-              %th Action...
+              %th.pull-right Action...
           %tbody
             - @yatches.each do |yatch|
               %tr
@@ -39,7 +43,7 @@
                 %td= yatch.model.try :humanize
                 %td= yatch.type.try :humanize
                 %td= yatch.seats
-                %td
+                %td.pull-right
                   .btn-group
                     = link_to edit_backend_yatch_path(yatch), class: "btn btn-primary btn-sm" do
                       %i.fa.fa-pencil
