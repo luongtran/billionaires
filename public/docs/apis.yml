@@ -89,6 +89,9 @@ paths:
           required: true
           type: string
           description: test
+        - name: organisation
+          in: formData
+          type: string
         - name: password
           in: formData
           type: string

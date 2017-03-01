@@ -25,8 +25,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth',  controllers: {
+        confirmations:      'devise_overrides/confirmations',
+        passwords:          'devise_overrides/passwords',
+        omniauth_callbacks: 'devise_overrides/omniauth_callbacks',
         registrations:      'devise_overrides/registrations',
-        sessions:           'devise_overrides/sessions'
+        sessions:           'devise_overrides/sessions',
+        token_validations:  'devise_overrides/token_validations'
       }
 
       controller :registrations do
@@ -39,8 +43,9 @@ Rails.application.routes.draw do
     match "*path", to: "base#render_endpoint_not_exists", via: :all
   end
 
-
   controller :home do
     get :welcome, path: 'pages/welcome'
   end
+
+  match "*path", to: "home#render_404", via: :get
 end

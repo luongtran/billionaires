@@ -40,8 +40,7 @@ module Api
       if errors.present?
         response_body[:errors] = errors
       end
-      # All response status code should be 200 OK even it was an error!
-      render json: response_body, status: http_status_code
+      render json: response_body, status: 200
     end
 
     def render_success(message = nil)

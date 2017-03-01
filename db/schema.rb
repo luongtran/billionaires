@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20170228033725) do
     t.integer  "power"
     t.integer  "max_speed"
     t.string   "engine"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.string   "fuel_on_city"
     t.float    "daily_rental"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "cities", force: :cascade do |t|

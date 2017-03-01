@@ -1,5 +1,5 @@
 class Api::V1::ProfilesController < Api::BaseController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :update]
 
   def show
   end
@@ -8,7 +8,7 @@ class Api::V1::ProfilesController < Api::BaseController
     if current_user.update_attributes(user_params)
       render_success 'Profile updated'
     else
-      render_bad_parameters 'Failed to update profile', current_user.errors.full_messages
+      render_bad_params 'Failed to update profile', current_user.errors.full_messages
     end
   end
 

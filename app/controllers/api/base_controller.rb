@@ -3,7 +3,7 @@ class Api::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
   respond_to :json
 
-  if Rails.env.production?
+  # if Rails.env.production?
     rescue_from StandardError do |_e|
       log_server_error(_e, {
         current_user: current_user.try(:id)
@@ -26,6 +26,10 @@ class Api::BaseController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid do |_e|
       render_server_error
     end
+  # end
+
+  def render_validate_token_error
+    render_error Api::Status::ACCESS_TOKEN_INVALID
   end
 
   rescue_from ActiveRecord::RecordNotFound do |_e|
@@ -40,5 +44,12 @@ class Api::BaseController < ApplicationController
     render_error(
       Api::Status::BAD_REQUEST,
       "Parameter '#{e.param}' is missing or empty")
+  end
+
+  def authenticate_user!
+    unless current_user
+      render_error Api::Status::UNAUTHORIZED,
+        t('devise.failure.unauthenticated')
+    end
   end
 end

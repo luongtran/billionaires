@@ -7,9 +7,7 @@ class Api::V1::RegistrationsController < Api::BaseController
     begin
       auth = FbGraph2::Auth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
       tok = auth.debug_token! fb_token
-      Rails.logger.info tok.access_token
       fb_user = FbGraph2::User.new(fb_user_id).authenticate(tok.access_token)
-      Rails.logger.info fb_user.inspect
       @fb_user = fb_user.fetch(fields: ['email','picture'])
       Rails.logger.info @fb_user
     rescue Exception => e
@@ -36,7 +34,7 @@ class Api::V1::RegistrationsController < Api::BaseController
       auth_header = @user.create_new_auth_token(@client_id)
       response.headers.merge!(auth_header)
       render_success do |json|
-        json[:data] = @user.to_json
+        json[:data] = @user.token_validation_response
       end
     else
       render_bad_params "Failed to create user", @user.errors.full_messages
