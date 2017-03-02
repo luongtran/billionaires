@@ -1,9 +1,5 @@
 class DeviseOverrides::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
 
-  def validate_token
-    super
-  end
-
   protected
 
   def render_validate_token_success

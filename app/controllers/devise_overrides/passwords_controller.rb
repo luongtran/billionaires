@@ -19,7 +19,7 @@ class DeviseOverrides::PasswordsController < DeviseTokenAuth::PasswordsControlle
   end
 
   def render_create_error
-    render_bad_params @error_status, @errors
+    render_error Api::Status::RESOURCE_NOT_FOUND, nil, @errors
   end
 
   def render_update_error_unauthorized
