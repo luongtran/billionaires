@@ -40,6 +40,7 @@ class DeviseOverrides::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCa
     user.assign_attributes({
       nickname: auth_hash['info']['nickname'],
       name:     auth_hash['info']['name'],
+      image:    auth_hash['info']['image'],
       email:    auth_hash['info']['email'] || [auth_hash['uid'], auth_hash['provider']].join("@") << ".com"
     })
   end

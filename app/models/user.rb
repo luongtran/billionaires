@@ -18,7 +18,6 @@ class User < ApplicationRecord
   validates :role, inclusion: VALID_ROLES
   validates :phone, numericality: { only_integer: true, allow_nil: true }, on: :update
   validates_attachment_content_type :image, content_type: /\Aimage/
-  validates_attachment_file_name :image, matches: [/png\z/, /jpe?g\z/]
   validates_attachment_size :image, less_than: 10.megabytes
   #=================================================================================================
   # METHODS

@@ -18,6 +18,9 @@
   .inner.cover
     %h1.cover-heading Comming soon
     %p.lead Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
+    %p.links
+      %a.btn.btn-primary{:href => "/api/v1/auth/facebook?omniauth_window_type=inAppBrowser"} Login via Facebook
+      %a.btn.btn-success{:href => "/api/v1/auth/twitter?omniauth_window_type=inAppBrowser"} Login via Twitter
   .mastfoot
     .inner
       %p
