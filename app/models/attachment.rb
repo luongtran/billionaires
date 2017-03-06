@@ -6,10 +6,10 @@ class Attachment < ApplicationRecord
         geometry: "2048x2048>"
         },
       medium: {
-        geometry: "300x300>"
+        geometry: "500x500>"
         },
       thumb: {
-        geometry: "100x100>"
+        geometry: "150x150>"
         },
     }
   #=================================================================================================

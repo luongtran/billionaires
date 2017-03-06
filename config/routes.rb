@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
       controller :registrations do
         post :facebook, path: 'auth/facebook'
+        # post :twitter, path: 'auth/twitter'
       end
 
       resource :profile, only: [:show, :update, :destroy] do
@@ -47,5 +48,5 @@ Rails.application.routes.draw do
     get :welcome, path: 'pages/welcome'
   end
 
-  match "*path", to: "home#render_404", via: :get
+  # match "*path", to: "home#render_404", via: :get
 end

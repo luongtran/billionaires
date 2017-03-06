@@ -31,7 +31,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'cancan'
-gem 'fb_graph2'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # Attachment
 gem 'delayed_paperclip'

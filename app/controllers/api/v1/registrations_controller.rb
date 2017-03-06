@@ -42,7 +42,11 @@ class Api::V1::RegistrationsController < Api::BaseController
   end
 
   def twitter
-
+    log = Logger.new('log/twitter_login.log')
+    log.info(params)
+    render_success do |json|
+      json[:data] = 'Not implement yet'
+    end
   end
 
   protected

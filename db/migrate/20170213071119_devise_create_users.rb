@@ -39,10 +39,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # Information
       t.string :name
       t.string :surname
+      t.string :nickname
       t.string :company_name
       t.string :organisation
       t.string :website
       t.string :phone
+      t.attachment :image
 
       t.timestamps null: false
     end
