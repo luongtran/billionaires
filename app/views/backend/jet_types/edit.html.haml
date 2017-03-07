@@ -1,0 +1,6 @@
+= render partial: 'header', locals: {current_header: "Edit #{@jet_type.name}"}
+.row
+  .col-lg-12
+    .white-box
+      %h3 Edit jet type
+      = render partial: 'form'

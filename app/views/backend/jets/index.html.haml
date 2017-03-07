@@ -1,14 +1,4 @@
-.row.bg-title
-  .col-lg-12
-    %h4.page-title Car management
-    %ol.breadcrumb
-      %li
-        %a{:href => "/"} Dashboard
-      %li
-        = link_to 'Cars', backend_jets_path
-      %li.active All jets
-  / /.col-lg-12
-/ row
+= render partial: 'header', locals: {current_header: "all jets"}
 .row
   .col-lg-12
     .white-box

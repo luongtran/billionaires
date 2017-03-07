@@ -7,7 +7,6 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.user?
-      can :read, :all
       can :manage, Device, user_id: user.id
     else
       can :manage, Device, user_id: user.id

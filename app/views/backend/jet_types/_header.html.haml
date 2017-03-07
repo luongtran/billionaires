@@ -1,0 +1,9 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Jet type management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Jet types', backend_jet_types_path
+      %li.active= current_header

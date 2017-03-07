@@ -13,19 +13,29 @@
         = link_to backend_dashboard_path do
           %i.glyphicon.glyphicon-fire.fa-fw
           Dashboard
-      %li
-        = link_to backend_users_path do
-          %i.fa.fa-user-circle.fa-fw
-          User management
-      %li
-        = link_to backend_jets_path do
-          %i.fa.fa-plane.fa-fw
-          Jet management
-      %li
-        = link_to backend_cars_path do
-          %i.fa.fa-car.fa-fw
-          Car management
-      %li
-        = link_to backend_yatches_path do
-          %i.fa.fa-ship.fa-fw
-          Yatch management
+      - if user_signed_in?
+        - if can? :read, :user
+          %li
+            = link_to backend_users_path do
+              %i.fa.fa-user-circle.fa-fw
+              User management
+        - if can? :read, :jet
+          %li
+            = link_to backend_jets_path do
+              %i.fa.fa-plane.fa-fw
+              Jet management
+        - if can? :read, :jet_type
+          %li
+            = link_to backend_jet_types_path do
+              %i.fa.fa-fighter-jet.fa-fw
+              Jet type management
+        - if can? :read, :car
+          %li
+            = link_to backend_cars_path do
+              %i.fa.fa-car.fa-fw
+              Car management
+        - if can? :read, :yatch
+          %li
+            = link_to backend_yatches_path do
+              %i.fa.fa-ship.fa-fw
+              Yatch management

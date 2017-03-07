@@ -1,0 +1,44 @@
+= render partial: 'header', locals: {current_header: "All jet types"}
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing jet types
+      .box-header.row
+        .col-md-6
+          = form_tag backend_jets_path, method: :get, class: 'form-inline' do
+            .form-group
+              = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+            = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_jet_type_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New jet type
+            = link_to 'Export', backend_jet_types_path(format: 'xlsx'), class: 'btn btn-primary'
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Name
+              %th Description
+              %th.pull-right Action...
+          %tbody
+            - @jet_types.each do |jet_type|
+              %tr
+                %td= jet_type.id
+                %td= jet_type.name
+                %td= truncate(jet_type.description,length: 200)
+                %td.pull-right
+                  .btn-group
+                    = link_to edit_backend_jet_type_path(jet_type), class: "btn btn-primary btn-sm" do
+                      %i.fa.fa-pencil
+                      Edit
+                    = link_to backend_jet_type_path(jet_type), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-fighter-jet
+                      Show
+                    = link_to backend_jet_type_path(jet_type), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      = paginate @jet_types

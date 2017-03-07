@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  green_cell =  s.add_style  bg_color: "38B682", fg_color: "E9FFF2", sz: 16, alignment: { horizontal: :center }
+  center_cell = s.add_style alignment: { horizontal: :center }
+  wb.add_worksheet(name: "Jet Types") do |sheet|
+    sheet.add_row ['ID','Name','Description'],
+      style: [green_cell,green_cell,green_cell]
+    @jet_types.each do |jet_type|
+      sheet.add_row [jet_type.id, jet_type.name, jet_type.description],
+      style: [center_cell, center_cell, center_cell]
+    end
+  end
+end

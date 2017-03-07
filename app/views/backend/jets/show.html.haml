@@ -1,14 +1,4 @@
-.row.bg-title
-  .col-lg-12
-    %h4.page-title Jet management
-    %ol.breadcrumb
-      %li
-        %a{:href => "/"} Dashboard
-      %li
-        = link_to 'Jets', backend_jets_path
-      %li.active Jet details
-  / /.col-lg-12
-/ row
+= render partial: 'header', locals: {current_header: "#{@jet.brand} #{@jet.model} details"}
 .row
   .col-lg-12
     .white-box
@@ -17,4 +7,13 @@
         '-
         = @jet.model
       %p= raw @jet.description
+      %dl.dl-horizontal
+        %dt Type
+        %dd= @jet.type
+        %dt Seats
+        %dd= @jet.type
+        %dt Range
+        %dd= @jet.range + 'natural miles'
+        %dt Luggage capacity
+        %dd= @jet.luggage_capacity
       = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

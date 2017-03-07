@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       end
     end
     resources :jets
+    resources :jet_types
     resources :yatches
   end
 

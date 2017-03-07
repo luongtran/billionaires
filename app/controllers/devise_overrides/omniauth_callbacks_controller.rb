@@ -10,13 +10,18 @@ class DeviseOverrides::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCa
       @resource.skip_confirmation!
     end
 
-    sign_in(:user, @resource, store: false, bypass: false)
+    @is_pc = request.user_agent =~ /Chrome|Safari/
+
+    sign_in(:user, @resource, store: @is_pc, bypass: false)
 
     @resource.save!
 
     yield @resource if block_given?
-
-    render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
+    if @is_pc
+      redirect_to root_path, notice: "Logged in as #{auth_hash['provider']}"
+    else
+      render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
+    end
   end
 
   protected

@@ -1,20 +1,24 @@
-.row.bg-title
-  .col-lg-12
-    %h4.page-title Car management
-    %ol.breadcrumb
-      %li
-        %a{:href => "/"} Dashboard
-      %li
-        = link_to 'Cars', backend_cars_path
-      %li.active Car details
-  / /.col-lg-12
-/ row
+= render partial: 'header', locals: {current_header: "#{@car.brand} #{@car.model} details"}
 .row
   .col-lg-12
     .white-box
-      %h3= @car.brand
-      %h5= @car.model
-      %h5= @car.type
-      %p=raw @car.description
-      %p= @car.created_at.strftime('%a %m-%d-%Y at %H:%M %P')
+      %h3 #{@car.brand} - #{@car.model}
+
+      %dl.dl-horizontal
+        %dt Description
+        %dd
+          %p=raw @car.description
+        %dt Type
+        %dd= @car.type
+        %dt Seats
+        %dd= @car.seats
+        %dt Power
+        %dd= @car.power
+        %dt Engine
+        %dd= @car.engine
+        %dt Top speed
+        %dd #{@car.max_speed} mph
+        %dt Created
+        %dd= @car.created_at.strftime('%a %m-%d-%Y at %H:%M %P')
+
       = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

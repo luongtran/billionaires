@@ -1,0 +1,9 @@
+= simple_form_for ['backend', @jet_type] do |f|
+  .row
+    .col-sm-12
+      = f.input :name
+  .row
+    .col-sm-12
+      = f.input :description, input_html: {class: 'tinymce'}
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

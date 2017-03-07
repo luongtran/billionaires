@@ -1,0 +1,8 @@
+= render partial: 'header', locals: {current_header: "#{@jet_type.name} details"}
+.row
+  .col-lg-12
+    .white-box
+      %h3
+        = @jet_type.name
+      %p= raw @jet_type.description
+      = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

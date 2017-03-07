@@ -285,65 +285,6 @@ paths:
                     type: string
                   website:
                     type: string
-  /auth/facebook:
-    post:
-      tags:
-        - Authenticate
-      summary: Authenticate via Facebook
-      parameters:
-        - name: fb_token
-          in: formData
-          description: The access token
-          required: true
-          type: string
-        - name: fb_user_id
-          in: formData
-          description: The user_id of facebook
-          required: true
-          type: string
-        - name: device[os]
-          in: formData
-          description: Device os
-        - name: device[token]
-          in: formData
-          description: Device token
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-              data:
-                type: object
-  /auth/twitter:
-    post:
-      tags:
-        - Authenticate
-      summary: Authenticate via Twitter
-      parameters:
-        - name: tw_token
-          in: formData
-          description: The access token
-          required: true
-          type: string
-        - name: device[os]
-          in: formData
-          description: Device os
-        - name: device[token]
-          in: formData
-          description: Device token
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-              data:
-                type: object
   /auth/sign_out:
     delete:
       tags:
