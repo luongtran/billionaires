@@ -9,7 +9,7 @@ class CreateJets < ActiveRecord::Migration[5.0]
       t.integer :seats
       t.integer :range
       t.integer :luggage_capacity
-
+      t.float :price_per_hours
       t.timestamps
     end
   end

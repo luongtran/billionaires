@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307021210) do
+ActiveRecord::Schema.define(version: 20170313034637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(version: 20170307021210) do
     t.index ["attachmentable_type", "attachmentable_id"], name: "index_attachments_on_attachmentable_type_and_attachmentable_id", using: :btree
   end
 
+  create_table "car_bookings", force: :cascade do |t|
+    t.integer  "car_id"
+    t.integer  "user_id"
+    t.integer  "city_id"
+    t.integer  "country_id"
+    t.boolean  "chauffeur",           default: false
+    t.string   "status"
+    t.string   "pick_up_address"
+    t.string   "pick_up_lat"
+    t.string   "pick_up_lng"
+    t.datetime "pick_up_time"
+    t.datetime "arrival_time"
+    t.string   "destination_address"
+    t.string   "destination_lat"
+    t.string   "destination_lng"
+    t.float    "estimate_distance"
+    t.float    "estimate_price"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["car_id"], name: "index_car_bookings_on_car_id", using: :btree
+    t.index ["city_id"], name: "index_car_bookings_on_city_id", using: :btree
+    t.index ["country_id"], name: "index_car_bookings_on_country_id", using: :btree
+    t.index ["user_id"], name: "index_car_bookings_on_user_id", using: :btree
+  end
+
   create_table "cars", force: :cascade do |t|
     t.string   "type"
     t.string   "brand"
@@ -34,12 +59,22 @@ ActiveRecord::Schema.define(version: 20170307021210) do
     t.text     "description"
     t.integer  "seats"
     t.integer  "power"
-    t.integer  "max_speed"
+    t.integer  "top_speed"
     t.string   "engine"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "fuel_on_city"
+    t.integer  "fuel_on_city"
+    t.integer  "fuel_on_hightway"
     t.float    "daily_rental"
+    t.float    "price_per_miles"
+    t.float    "deposit"
+    t.integer  "daily_miles"
+    t.integer  "extra_price_per_mile"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "cars_cities", id: false, force: :cascade do |t|
+    t.integer "car_id",  null: false
+    t.integer "city_id", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -86,9 +121,14 @@ ActiveRecord::Schema.define(version: 20170307021210) do
 
   create_table "jet_types", force: :cascade do |t|
     t.string   "name"
+    t.string   "short_name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "jets", force: :cascade do |t|
@@ -100,6 +140,7 @@ ActiveRecord::Schema.define(version: 20170307021210) do
     t.integer  "seats"
     t.integer  "range"
     t.integer  "luggage_capacity"
+    t.float    "price_per_hours"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -150,18 +191,18 @@ ActiveRecord::Schema.define(version: 20170307021210) do
     t.string   "role",                   default: "user",  null: false
     t.string   "name"
     t.string   "surname"
+    t.string   "nickname"
     t.string   "company_name"
     t.string   "organisation"
     t.string   "website"
     t.string   "phone"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "nickname"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
@@ -179,6 +220,8 @@ ActiveRecord::Schema.define(version: 20170307021210) do
     t.datetime "updated_at",       null: false
   end
 
+  add_foreign_key "car_bookings", "cars"
+  add_foreign_key "car_bookings", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "devices", "users"
 end

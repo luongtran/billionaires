@@ -36,10 +36,26 @@ Rails.application.routes.draw do
 
       controller :registrations do
         post :facebook, path: 'auth/facebook'
-        # post :twitter, path: 'auth/twitter'
+        post :twitter, path: 'auth/twitter'
       end
 
       resource :profile, only: [:show, :update, :destroy] do
+      end
+
+      resources :states, only: [:index]
+
+      resources :jets
+
+      resources :flights do
+        collection do
+          post :book
+        end
+      end
+
+      resources :cars do
+        collection do
+          post :book
+        end
       end
     end
     match "*path", to: "base#render_endpoint_not_exists", via: :all

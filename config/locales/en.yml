@@ -24,3 +24,19 @@ en:
     get:
       success: Get profile successfully
       failed: Get profile failed
+  jets:
+    get:
+      success: Get list jets successfully
+      failed: Get jets failed
+  cars:
+    get:
+      success: Get list cars successfully
+      failed: Get list cars failed
+  states:
+    get:
+      success: Get list states successfully
+      failed: Get list states failed
+  cities:
+    get:
+      success: Get list cities successfully
+      failed: Get list cities failed

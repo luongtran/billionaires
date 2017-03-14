@@ -18,7 +18,27 @@
     .col-sm-6
       = f.input :engine
     .col-sm-6
-      = f.input :max_speed
+      = f.input :top_speed
+  .row
+    .col-md-12
+      %h3 Rental information
+  .row
+    .col-md-6
+      = f.input :daily_rental
+    .col-md-6
+      = f.input :deposit
+  .row
+    .col-md-4
+      = f.input :price_per_miles
+    .col-md-4
+      = f.input :daily_miles
+    .col-md-4
+      = f.input :extra_price_per_mile
+  .row
+    .col-md-6
+      = f.input :fuel_on_city
+    .col-md-6
+      = f.input :fuel_on_hightway
   .row
     .col-md-12
       %h3 Attachments

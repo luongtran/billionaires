@@ -66,7 +66,7 @@ class Backend::CarsController < Backend::BaseController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :type, :model, :seats, :power, :max_speed, :engine, :description,
+    params.require(:car).permit(:brand, :type, :model, :seats, :power, :top_speed, :engine, :description,
       attachments_attributes: [:id, :file, :_destroy])
   end
 end

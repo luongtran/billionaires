@@ -16,9 +16,9 @@ class User < ApplicationRecord
   # VALIDATIONS
   #=================================================================================================
   validates :role, inclusion: VALID_ROLES
-  validates :phone, numericality: { only_integer: true, allow_nil: true }, on: :update
-  validates_attachment_content_type :image, content_type: /\Aimage/
+  validates :phone, numericality: { only_integer: true, allow_nil: true, allow_blank: true }, on: :update
   validates_attachment_size :image, less_than: 10.megabytes
+  validates_attachment_content_type :image, content_type: /\Aimage/
   #=================================================================================================
   # METHODS
   #=================================================================================================
@@ -33,8 +33,14 @@ class User < ApplicationRecord
     [name,surname].join(' ')
   end
 
-  def as_json
-    {full_name: full_name, email: email,company_name: company_name, surname: surname, phone: phone,
-      website: website, image_url: image.url}
+  def as_json(options = nil)
+    response_json = super
+    response_json.merge!(image_url: self.image.try(:url))
   end
+
+  def booking_car(booking_params = nil)
+    booking = self.car_bookings.create(booking_params)
+    booking
+  end
+
 end

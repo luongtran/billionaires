@@ -34,6 +34,9 @@ gem 'cancan'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+# Get twitter/facebook information
+gem 'twitter'
+gem 'fb_graph2'
 
 # Attachment
 gem 'delayed_paperclip'

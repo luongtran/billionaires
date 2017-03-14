@@ -9,7 +9,6 @@ class Api::V1::RegistrationsController < Api::BaseController
       tok = auth.debug_token! fb_token
       fb_user = FbGraph2::User.new(fb_user_id).authenticate(tok.access_token)
       @fb_user = fb_user.fetch(fields: ['email','picture'])
-      Rails.logger.info @fb_user
     rescue Exception => e
       render_bad_params "Error", e.message
       return

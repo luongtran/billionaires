@@ -6,7 +6,7 @@ class Backend::ProfilesController < Backend::BaseController
     if current_user.update_attributes(user_params)
       render :show, notice: 'Profile updated'
     else
-      render :account_setting, alert: 'Failed to update profile, please check your input'
+      render :show, alert: 'Failed to update profile, please check your input'
     end
   end
 

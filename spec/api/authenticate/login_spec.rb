@@ -7,6 +7,7 @@ describe "the api signin process", type: :request do
     post '/api/v1/auth/sign_in', params: {email: @user.email, password: 123123}
     expect(response).to be_success
     expect(http_status_code).to eq(200)
+    expect(json_response[:data][:id]).to eq(@user.id)
   end
 
   it "signs me up" do

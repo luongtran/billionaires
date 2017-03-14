@@ -34,6 +34,7 @@
               %th Surname
               %th Email
               %th Role
+              %th Provider
               %th Action...
           %tbody
             - @users.each do |user|
@@ -46,6 +47,8 @@
                 %td
                   %span.label{class: label_class_for(user.role)}= user.role
                 %td
+                  %span.label{class: label_class_for(user.provider)}= user.provider
+                %td
                   .btn-group
                     = link_to edit_backend_user_path(user), class: "btn btn-primary btn-sm" do
                       %i.fa.fa-pencil
@@ -56,7 +59,7 @@
                     = link_to backend_user_path(user), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
                       %i.fa.fa-trash
                       Destroy
-                    - if can? :push_notification, user
+                    - if can?(:push_notification, user) && user.devices.length > 0
                       = link_to notification_modal_backend_user_path(user), data: {method: 'post', remote: true}, class: 'btn btn-sm btn-warning' do
                         %i.fa.fa-send
                         Push notification

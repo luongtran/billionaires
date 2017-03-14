@@ -51,6 +51,6 @@ class Backend::JetTypesController < Backend::BaseController
   end
 
   def jet_params
-    params.require(:jet_type).permit(:name, :description)
+    params.require(:jet_type).permit(:name, :short_name, :image, :description)
   end
 end

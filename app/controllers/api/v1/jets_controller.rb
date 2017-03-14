@@ -2,11 +2,17 @@ class Api::V1::JetsController < Api::BaseController
   before_action :authenticate_user!
 
   # ==== INPUT ====
-  # two_way, from, to, departure, pax, time
+  # two_way, from, to, departure_date, return_date, passengers, time
   # ==== OUTPUT ====
-  # listing jets fiting range, seat, location, available in time
-  def search
+  # listing jets (type, free slots, image) with estimate flight hours, price
+  def index
+    @jets = Jet.all
+  end
 
+  private
+
+  def search_params
+    params.permit(:two_way, :from, :to, :departure_date, :return_date, :passengers, :time)
   end
 
 end

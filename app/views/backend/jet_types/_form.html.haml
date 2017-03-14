@@ -1,7 +1,12 @@
 = simple_form_for ['backend', @jet_type] do |f|
   .row
-    .col-sm-12
+    .col-sm-6
       = f.input :name
+    .col-sm-6
+      = f.input :short_name
+  .row
+    .col-sm-12
+      = f.input :image, hint: f.object.image.url
   .row
     .col-sm-12
       = f.input :description, input_html: {class: 'tinymce'}

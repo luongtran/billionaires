@@ -6,7 +6,7 @@ wb.styles do |s|
     sheet.add_row ['ID','Brand','Model','Seats','Type','Engine','Power','Max speed'],
       style: [green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell]
     @cars.each do |car|
-      sheet.add_row [car.id, car.brand, car.model, car.seats, car.type, car.engine, car.power, car.max_speed],
+      sheet.add_row [car.id, car.brand, car.model, car.seats, car.type, car.engine, car.power, car.top_speed],
       style: [center_cell]
     end
     if @cars.length > 3
