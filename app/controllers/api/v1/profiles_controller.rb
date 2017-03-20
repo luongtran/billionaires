@@ -12,7 +12,20 @@ class Api::V1::ProfilesController < Api::BaseController
     end
   end
 
+  def invitation
+    user = User.invite!(invitation_params, current_user)
+    if user.new_record?
+      render_bad_params 'Failed to sent invite', user.errors.full_messages
+    else
+      render_success "Invite email sent"
+    end
+  end
+
   private
+
+  def invitation_params
+    params.permit(:email, :name)
+  end
 
   def user_params
     params.require(:user).permit(:name, :surname, :phone, :gender, :company_name, :organisation, :website)

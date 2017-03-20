@@ -1,0 +1,9 @@
+.row.bg-title
+  .col-lg-12
+    %h4.page-title Car booking management
+    %ol.breadcrumb
+      %li
+        %a{:href => "/"} Dashboard
+      %li
+        = link_to 'Car bookings', backend_car_bookings_path
+      %li.active= current_header

@@ -1,0 +1,48 @@
+= render partial: 'header', locals: {current_header: "All cars"}
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing cars
+      .box-header.row
+        .col-md-6
+          = form_tag backend_cars_path, method: :get, class: 'form-inline' do
+            .form-group
+              = text_field_tag :q, nil,  placeholder: 'Search anything', class: 'form-control'
+            = button_tag 'Search', type: 'submit', class: 'btn btn btn-success'
+        .col-md-6
+          .btn-group.pull-right
+            = link_to new_backend_car_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New car
+            = link_to 'Export', backend_cars_path(format: 'xlsx'), class: 'btn btn-primary'
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Car
+              %th User
+              %th Chauffer
+              %th Status
+              %th Pickup
+              %th Destination
+              %th.pull-right Action...
+          %tbody
+            - @car_bookings.each do |car_booking|
+              %tr
+                %td= car_booking.id
+                %td= link_to car_booking.car.long_name, backend_car_path(car_booking.car)
+                %td= link_to car_booking.user.full_name, backend_user_path(car_booking.user)
+                %td= car_booking.chauffeur ? 'Yes' : 'No'
+                %td= car_booking.status
+                %td= car_booking.pick_up_address
+                %td= car_booking.destination_address
+                %td.pull-right
+                  .btn-group
+                    = link_to backend_car_booking_path(car_booking), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-car
+                      Show
+                    = link_to backend_car_booking_path(car_booking), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      = paginate @car_bookings

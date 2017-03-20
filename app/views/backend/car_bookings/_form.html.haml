@@ -1,0 +1,51 @@
+= simple_nested_form_for ['backend', @car] do |f|
+  .row
+    .col-sm-4
+      = f.input :brand
+    .col-sm-4
+      = f.input :model
+    .col-sm-4
+      = f.input :type
+  .row
+    .col-sm-12
+      = f.input :description, input_html: {class: 'tinymce'}
+  .row
+    .col-sm-6
+      = f.input :seats
+    .col-sm-6
+      = f.input :power
+  .row
+    .col-sm-6
+      = f.input :engine
+    .col-sm-6
+      = f.input :top_speed
+  .row
+    .col-md-12
+      %h3 Rental information
+  .row
+    .col-md-6
+      = f.input :daily_rental
+    .col-md-6
+      = f.input :deposit
+  .row
+    .col-md-4
+      = f.input :price_per_miles
+    .col-md-4
+      = f.input :daily_miles
+    .col-md-4
+      = f.input :extra_price_per_mile
+  .row
+    .col-md-6
+      = f.input :fuel_on_city
+    .col-md-6
+      = f.input :fuel_on_hightway
+  .row
+    .col-md-12
+      %h3 Attachments
+      = f.fields_for :attachments, wrapper: false do |fa|
+        .car_attachments
+          = fa.input :file, hint: image_tag(fa.object.file.url(:thumb))
+          = fa.link_to_remove "Remove", class: 'btn btn-remove'
+      = f.link_to_add "Add a attachment", :attachments
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

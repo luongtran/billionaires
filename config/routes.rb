@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         post :import
       end
     end
+    resources :car_bookings
     resources :jets
     resources :jet_types
     resources :yatches
@@ -40,20 +41,28 @@ Rails.application.routes.draw do
       end
 
       resource :profile, only: [:show, :update, :destroy] do
+        collection do
+          post :invitation
+        end
       end
 
-      resources :states, only: [:index]
+      resources :states, only: [:index] do
+        collection do
+        end
+      end
 
       resources :jets
 
       resources :flights do
         collection do
+          post :distance_calculate
           post :book
         end
       end
 
       resources :cars do
         collection do
+          post :distance_calculate
           post :book
         end
       end

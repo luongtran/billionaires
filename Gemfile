@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'devise_token_auth'
+gem 'devise_invitable'
 gem 'cancan'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -62,6 +63,7 @@ gem 'braintree'
 # Geocoding
 gem 'geokit'
 gem 'geokit-rails'
+gem 'google_maps_service'
 
 # Simple form
 gem 'simple_form'

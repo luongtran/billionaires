@@ -34,6 +34,10 @@
             = link_to backend_cars_path do
               %i.fa.fa-car.fa-fw
               Car management
+          %li
+            = link_to backend_car_bookings_path do
+              %i.fa.fa-calendar.fa-fw
+              Car booking management
         - if can? :read, :yatch
           %li
             = link_to backend_yatches_path do

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   VALID_ROLES = %w(admin user customer editor).freeze
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, :confirmable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   include DeviseTokenAuth::Concerns::User
   has_attached_file :image, style: {medium: {geometry: '500x500>'}, thumb: '150x150>'}

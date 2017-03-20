@@ -1,0 +1,95 @@
+= render partial: 'header', locals: {current_header: "Car booking ##{@car_booking.id} details"}
+.row
+  .col-md-12
+    .white-box
+      %h3
+        %b Booking
+        %span.pull-right ##{@car_booking.id}
+      %hr
+        .row
+          .col-md-12
+            .pull-left
+              %address
+                %h3
+                  %i.glyphicon.glyphicon-fire.text-info
+                  %b= @car_booking.user.full_name
+                %p.text-muted.m-l-5
+                  E 104, Dharti-2,
+                  %br/
+                  Nr' Viswakarma Temple,
+                  %br/
+                  Talaja Road,
+                  %br/
+                  Bhavnagar - 364002
+            .pull-right.text-right
+              %address
+                %h3 To,
+                %h4.font-bold Gaala  Sons,
+                %p.text-muted.m-l-30
+                  E 104, Dharti-2,
+                  %br/
+                  Nr' Viswakarma Temple,
+                  %br/
+                  Talaja Road,
+                  %br/
+                  Bhavnagar - 364002
+                %p.m-t-30
+                  %b Invoice Date :
+                  %i.fa.fa-calendar
+                  23rd Jan 2016
+                %p
+                  %b Due Date :
+                  %i.fa.fa-calendar
+                  25th Jan 2016
+          .col-md-12
+            .table-responsive.m-t-40
+              %table.table.table-hover
+                %thead
+                  %tr
+                    %th.text-center #
+                    %th Description
+                    %th.text-right Quantity
+                    %th.text-right Unit Cost
+                    %th.text-right Total
+                %tbody
+                  %tr
+                    %td.text-center 1
+                    %td Milk Powder
+                    %td.text-right 2
+                    %td.text-right $24
+                    %td.text-right $48
+                  %tr
+                    %td.text-center 2
+                    %td Air Conditioner
+                    %td.text-right 3
+                    %td.text-right $500
+                    %td.text-right $1500
+                  %tr
+                    %td.text-center 3
+                    %td RC Cars
+                    %td.text-right 20
+                    %td.text-right %600
+                    %td.text-right $12000
+                  %tr
+                    %td.text-center 4
+                    %td Down Coat
+                    %td.text-right 60
+                    %td.text-right $5
+                    %td.text-right $300
+          .col-md-12
+            .pull-right.m-t-30.text-right
+              %p Sub - Total amount: $13,848
+              %p vat (10%) : $138
+              %hr
+                %h3
+                  %b Total :
+                  $13,986
+              .clearfix
+              %hr
+                .text-right
+                  %button.btn.btn-primary{:type => "submit"} Proceed to payment
+                  %button.btn.btn-default{:onClick => "javascript:window.print();", :type => "button"}
+                    %span
+                      %i.fa.fa-print
+                      Print
+      / /.row
