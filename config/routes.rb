@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :backend do
+    root to: 'dashboard#index'
     get :dashboard, to: 'dashboard#index'
     resource :profile, only: [:show, :update, :destroy] do
       get :account_setting
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     resources :car_bookings
     resources :jets
     resources :jet_types
+    resources :states
     resources :yatches
   end
 

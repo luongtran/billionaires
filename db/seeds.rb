@@ -269,3 +269,5 @@ JetType.create(
   short_name: 'jumbo',
   description: 'Jumbo Jet is well known as a wide body of commercial airline and cargo aircraft. Boeing 747 is amazing with hump-like upper deck to serve as a first class lounge and which allows easily converted to cargo carrier.'
   )
+
+State.create(name: 'NY', cities: [{name: "New York"},{name: "Albany"}])

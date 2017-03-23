@@ -1,0 +1,18 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  green_cell =  s.add_style  bg_color: "38B682", fg_color: "E9FFF2", sz: 16, alignment: { horizontal: :center }
+  center_cell = s.add_style alignment: { horizontal: :center }
+  wb.add_worksheet(name: "Cars") do |sheet|
+    sheet.add_row ['ID','Brand','Model','Seats','Type','Engine','Power','Max speed'],
+      style: [green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell,green_cell]
+    @cars.each do |car|
+      sheet.add_row [car.id, car.brand, car.model, car.seats, car.type, car.engine, car.power, car.top_speed],
+      style: [center_cell]
+    end
+    if @cars.length > 3
+      sheet.add_chart(Axlsx::Pie3DChart, :start_at => [11,0], :end_at => [15, 10], :title => "Chart") do |chart|
+        chart.add_series :data => sheet["D2:D4"], :labels => sheet["C2:C4"],  :colors => ['FF0000', '00FF00', '0000FF']
+      end
+    end
+  end
+end

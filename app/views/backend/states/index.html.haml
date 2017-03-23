@@ -1,0 +1,40 @@
+= render partial: 'header', locals: {current_header: "All states"}
+.row
+  .col-lg-12
+    .white-box
+      %h3 Listing states
+      .box-header.row
+        .col-md-6.col-md-offset-6
+          .btn-group.pull-right
+            = link_to new_backend_state_path, class: 'btn btn-success' do
+              %i.fa.fa-plus
+              New state
+      .table-responsive
+        %table.table.table-hover.table-striped.table-bordered
+          %thead
+            %tr
+              %th #
+              %th Name
+              %th Location
+              %th.pull-right Action...
+          %tbody
+            - @states.each do |state|
+              %tr
+                %td= state.id
+                %td= state.name
+                %td
+                  - if state.location
+                    = image_tag "https://maps.googleapis.com/maps/api/staticmap?key=#{ENV['GOOGLE_API_KEY']}&center=#{state.location.lat},#{state.location.lng}&zoom=12&size=300x200&markers=#{state.location.lat},#{state.location.lng}"
+                %td.pull-right
+                  .btn-group
+                    = link_to edit_backend_state_path(state), class: "btn btn-primary btn-sm" do
+                      %i.fa.fa-pencil
+                      Edit
+                    = link_to backend_state_path(state), class: "btn btn-success btn-sm" do
+                      %i.fa.fa-state
+                      Show
+                    = link_to backend_state_path(state), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
+                      %i.fa.fa-trash
+                      Destroy
+      .push-notification
+      = paginate @states

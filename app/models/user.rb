@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   include DeviseTokenAuth::Concerns::User
-  has_attached_file :image, style: {medium: {geometry: '500x500>'}, thumb: '150x150>'}
+  has_attached_file :image, style: {medium: {geometry: '500x500>'}, thumb: '150x150>'}, default_url: ApplicationController.helpers.asset_path("default_avatar.png")
   #=================================================================================================
   # ASSOCCIATIONS
   #=================================================================================================

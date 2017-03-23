@@ -162,7 +162,7 @@
             %i.fa.fa-search
       %li.dropdown
         %a.dropdown-toggle.profile-pic{"data-toggle" => "dropdown", href: "#"}
-          = image_tag 'users/hritik.jpg', alt: 'user-img', width: 36
+          = image_tag current_user.image.url, alt: 'user-img', width: 36
           %b.hidden-xs.username= current_user.full_name.titleize
         %ul.dropdown-menu.dropdown-user
           %li

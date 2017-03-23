@@ -18,28 +18,23 @@
           %li
             = link_to backend_users_path do
               %i.fa.fa-user-circle.fa-fw
-              User management
+              Users
         - if can? :read, :jet
           %li
             = link_to backend_jets_path do
               %i.fa.fa-plane.fa-fw
-              Jet management
+              Jets
         - if can? :read, :jet_type
           %li
             = link_to backend_jet_types_path do
               %i.fa.fa-fighter-jet.fa-fw
-              Jet type management
+              Jet types
         - if can? :read, :car
           %li
             = link_to backend_cars_path do
               %i.fa.fa-car.fa-fw
-              Car management
+              Cars
           %li
             = link_to backend_car_bookings_path do
               %i.fa.fa-calendar.fa-fw
-              Car booking management
-        - if can? :read, :yatch
-          %li
-            = link_to backend_yatches_path do
-              %i.fa.fa-ship.fa-fw
-              Yatch management
+              Car bookings

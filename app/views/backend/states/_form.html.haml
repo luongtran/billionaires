@@ -1,0 +1,14 @@
+= simple_nested_form_for ['backend', @state] do |f|
+  .row
+    .col-sm-4
+      = f.input :name
+  .row
+    .col-md-12
+      %h3 Cities
+      = f.fields_for :cities, wrapper: false do |fc|
+        .car_attachments
+          = fc.input :name
+          = fc.link_to_remove "Remove", class: 'btn btn-remove'
+      = f.link_to_add "Add a city", :cities, class: 'btn btn-primary btn-xs'
+  = f.submit nil, class: 'btn btn-sm btn-success'
+  = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

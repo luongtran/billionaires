@@ -329,6 +329,11 @@ paths:
           description: The access token
           required: true
           type: string
+        - name: tw_token_secret
+          in: formData
+          description: The access token secret
+          required: true
+          type: string
         - name: device[os]
           in: formData
           description: Device os
@@ -636,7 +641,7 @@ paths:
               data:
                 type: object
                 properties:
-                  cars:
+                  states:
                     type: array
                     items:
                       $ref: '#/definitions/State'

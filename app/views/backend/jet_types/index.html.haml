@@ -21,14 +21,12 @@
             %tr
               %th #
               %th Name
-              %th Description
               %th.pull-right Action...
           %tbody
             - @jet_types.each do |jet_type|
               %tr
                 %td= jet_type.id
                 %td= jet_type.name
-                %td= truncate(jet_type.description,length: 200)
                 %td.pull-right
                   .btn-group
                     = link_to edit_backend_jet_type_path(jet_type), class: "btn btn-primary btn-sm" do
