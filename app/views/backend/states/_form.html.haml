@@ -3,12 +3,23 @@
     .col-sm-4
       = f.input :name
   .row
+    .col-sm-12
+      %h3 Location
+    = f.fields_for :location, wrapper: false do |fl|
+      .col-sm-6
+        = fl.input :lat
+      .col-sm-6
+        = fl.input :lng
+  .row
     .col-md-12
       %h3 Cities
-      = f.fields_for :cities, wrapper: false do |fc|
-        .car_attachments
-          = fc.input :name
-          = fc.link_to_remove "Remove", class: 'btn btn-remove'
-      = f.link_to_add "Add a city", :cities, class: 'btn btn-primary btn-xs'
+    = f.fields_for :cities, wrapper: false do |fc|
+      .car_attachments.col-md-4
+        = fc.input :name
+        = fc.link_to_remove "Remove", class: 'btn btn-remove'
+    .col-md-12
+      = f.link_to_add :cities, class: 'btn btn-primary' do
+        %i.fa.fa-plus
+        Add a city
   = f.submit nil, class: 'btn btn-sm btn-success'
   = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

@@ -1,16 +1,5 @@
-.row.bg-title
-  .col-lg-12
-    %h4.page-title Car management
-    %ol.breadcrumb
-      %li
-        %a{:href => "/"} Dashboard
-      %li
-        = link_to 'Cars', backend_cars_path
-      %li.active all cars
-  / /.col-lg-12
-/ row
+= render partial: 'header', locals: {current_header: "Edit state"}
 .row
   .col-lg-12
     .white-box
-      %h3 Edit car
       = render partial: 'form'

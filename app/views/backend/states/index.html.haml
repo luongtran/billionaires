@@ -24,7 +24,7 @@
                 %td= state.name
                 %td
                   - if state.location
-                    = image_tag "https://maps.googleapis.com/maps/api/staticmap?key=#{ENV['GOOGLE_API_KEY']}&center=#{state.location.lat},#{state.location.lng}&zoom=12&size=300x200&markers=#{state.location.lat},#{state.location.lng}"
+                    = image_tag "https://maps.googleapis.com/maps/api/staticmap?key=#{ENV['GOOGLE_API_KEY']}&center=#{state.location.lat},#{state.location.lng}&zoom=7&size=300x200&markers=#{state.location.lat},#{state.location.lng}"
                 %td.pull-right
                   .btn-group
                     = link_to edit_backend_state_path(state), class: "btn btn-primary btn-sm" do

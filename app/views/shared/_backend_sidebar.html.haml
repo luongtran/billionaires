@@ -29,6 +29,11 @@
             = link_to backend_jet_types_path do
               %i.fa.fa-fighter-jet.fa-fw
               Jet types
+        - if can? :read, :state
+          %li
+            = link_to backend_states_path do
+              %i.fa.fa-location-arrow.fa-fw
+              States
         - if can? :read, :car
           %li
             = link_to backend_cars_path do
