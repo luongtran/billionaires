@@ -527,11 +527,11 @@ paths:
           description: pick_up_address
         - name: pick_up_lat
           in: formData
-          type: string
+          type: number
           description: pick_up_lat
         - name: pick_up_lng
           in: formData
-          type: string
+          type: number
           description: pick_up_lng
         - name: destination_address
           in: formData
@@ -539,11 +539,11 @@ paths:
           description: destination_address
         - name: destination_lat
           in: formData
-          type: string
+          type: number
           description: destination_lat
         - name: destination_lng
           in: formData
-          type: string
+          type: number
           description: destination_lng
         - name: name
           in: formData
@@ -567,11 +567,11 @@ paths:
           description: state
         - name: zip
           in: formData
-          type: number
+          type: integer
           description: zip
         - name: driver_licence
           in: formData
-          type: number
+          type: string
           description: driver_licence
         - name: bithrday
           in: formData
@@ -579,15 +579,15 @@ paths:
           description: bithrday
         - name: state_license_was_issued
           in: formData
-          type: number
+          type: string
           description: state_license_was_issued
         - name: insurance_carrier
           in: formData
-          type: number
+          type: string
           description: insurance_carrier
         - name: policy
           in: formData
-          type: number
+          type: string
           description: policy
         - name: start_date
           in: formData
@@ -599,7 +599,7 @@ paths:
           description: end_date
         - name: additional_information
           in: formData
-          type: number
+          type: string
           description: additional_information
       responses:
         '200':

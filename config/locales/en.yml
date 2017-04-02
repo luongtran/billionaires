@@ -32,6 +32,9 @@ en:
     get:
       success: Get list cars successfully
       failed: Get list cars failed
+    book:
+      success: Booking car successfully
+      failed: Booking car failed
   states:
     get:
       success: Get list states successfully

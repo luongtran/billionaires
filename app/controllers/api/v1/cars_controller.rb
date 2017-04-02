@@ -36,9 +36,12 @@ class Api::V1::CarsController < Api::BaseController
   end
 
   def book_params
-    params.permit(:car_id, :pick_up_address, :pick_up_lat, :pick_up_lng, :guests, :chauffer,
+    params[:start_date] = Time.at(params[:start_date].to_i) if params[:start_date]
+    params[:end_date] = Time.at(params[:end_date].to_i) if params[:end_date]
+    params[:bithrday] = Time.at(params[:bithrday].to_i) if params[:bithrday]
+    params.permit(:car_id, :pick_up_address, :pick_up_lat, :pick_up_lng, :chauffeur,
       :destination_address, :destination_lat, :destination_lng, :name, :surname, :street_address,
       :city, :state, :zip, :driver_licence, :bithrday, :state_license_was_issued, :insurance_carrier,
-      :policy, :start_date, :end_date, :delivery_address, :additional_information)
+      :policy, :start_date, :end_date, :additional_information)
   end
 end

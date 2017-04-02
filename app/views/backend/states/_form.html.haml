@@ -16,7 +16,7 @@
     = f.fields_for :cities, wrapper: false do |fc|
       .car_attachments.col-md-4
         = fc.input :name
-        = fc.link_to_remove "Remove", class: 'btn btn-remove'
+        = fc.link_to_remove "Remove", class: 'btn btn-remove btn-danger'
     .col-md-12
       = f.link_to_add :cities, class: 'btn btn-primary' do
         %i.fa.fa-plus

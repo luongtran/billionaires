@@ -1,44 +1,54 @@
-// disable auto discover
-Dropzone.autoDiscover = false;
-// grap our upload form by its id
-$("#car_attachments").dropzone({
-  // restrict image size to a maximum 1MB
-  maxFilesize: 10,
-  acceptedFiles: "image/*, application/*",
-  // changed the passed param to one accepted by
-  // our rails app
-  paramName: "attachments_attributes[file]",
-  // show remove links on each image upload
-  addRemoveLinks: true,
-  success: function(file, response) {
+$(document).ready(function(){
+  // disable auto discover
+  Dropzone.autoDiscover = false;
 
-    file._downloadLink = Dropzone.createElement('<a class="btn btn-default no-radius btn-xs"  style="margin-left:5px;" href="' + response.link + '" target="_blank" data-dz-download><i style="cursor:pointer" class="fa fa-download"></i></a>');
-    file.previewElement.appendChild(file._downloadLink);
+  // grap our upload form by its id
+  $("#attachments_upload").dropzone({
+    // restrict image size to a maximum 1MB
+    maxFilesize: 5,
 
-    $(file.previewTemplate).find('.dz-remove').attr('id', response.fileID).append("<i style='cursor:pointer' class='fa fa-remove'></i>");
-    // add the dz-success class (the green tick sign)
-    $(file.previewElement).addClass("dz-success");
+    // changed the passed param to one accepted by our rails app
+    paramName: "attachments_attributes[][file]",
 
-  },
+    // show remove links on each image upload
+    addRemoveLinks: true,
+    dictDefaultMessage: "Drop file here.",
+    autoProcessQueue: false,
+    uploadMultiple: true,
+    parallelUploads: 5,
+    maxFiles: 5,
 
-  error: function(file, message) {
-    toastr.error(message);
-    this.removeFile(file);
-  },
-  //autoProcessQueue: true,
-  //when the remove button is clicked
-  removedfile: function(file) {
-    // grap the id of the uploaded file we set earlier
-    var id = $(file.previewTemplate).find('.dz-remove').attr('id');
-    var name = file.name;
-    $.ajax({
-      type: 'DELETE',
-      url: '/backend/cars/attachments/' + id,
-      success: function(data) {
-        console.log(data.message);
-      }
-    });
-    var _ref;
-    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-  },
+
+     // The setting up of the dropzone
+    init: function() {
+      var myDropzone = this;
+
+      // First change the button to actually tell Dropzone to process the queue.
+      this.element.querySelector("input[type=submit]").addEventListener("click", function(e) {
+        // Make sure that the form isn't actually being sent.
+        e.preventDefault();
+        e.stopPropagation();
+        myDropzone.processQueue();
+      });
+
+      // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+      // of the sending event because uploadMultiple is set to true.
+      this.on("sendingmultiple", function() {
+        // Gets triggered when the form is actually being sent.
+        // Hide the success button or the complete form.
+      });
+      this.on("successmultiple", function(files, response) {
+        // Gets triggered when the files have successfully been sent.
+        // Redirect user or notify of success.
+      });
+      this.on("errormultiple", function(files, response) {
+        // Gets triggered when there was an error sending the files.
+        // Maybe show form again, and notify user of error
+      });
+  }
+
+
+
+
+  });
 });

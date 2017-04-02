@@ -11,7 +11,7 @@ class Attachment < ApplicationRecord
       thumb: {
         geometry: "150x150>"
         },
-    }
+    }, default_url: ApplicationController.helpers.asset_path("missing.jpg")
   #=================================================================================================
   # VALIDATIONS
   #=================================================================================================

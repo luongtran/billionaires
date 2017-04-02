@@ -8,7 +8,7 @@
       = f.input :type
   .row
     .col-sm-12
-      = f.input :description, input_html: {class: 'tinymce'}
+      = f.input :description
   .row
     .col-sm-6
       = f.input :seats
@@ -41,11 +41,23 @@
       = f.input :fuel_on_hightway
   .row
     .col-md-12
+      %h3 Available in cities
+      - @cities.each do |city|
+        %label
+          = check_box_tag 'city_ids[]', city.id, @car.city_ids.include?(city.id), class: 'icheck'
+          = h city.name
+  .row
+    .col-md-12
       %h3 Attachments
-      = f.fields_for :attachments, wrapper: false do |fa|
-        .car_attachments
-          = fa.input :file, hint: image_tag(fa.object.file.url(:thumb))
-          = fa.link_to_remove "Remove", class: 'btn btn-remove'
-      = f.link_to_add "Add a attachment", :attachments
+  .row
+    = f.fields_for :attachments, wrapper: false do |fa|
+      .col-md-12.car-attachment
+        = fa.input :file, hint: image_tag(fa.object.file.url(:thumb), width: '140')
+        = fa.link_to_remove "Remove", class: 'btn btn-remove btn-danger'
+  .row
+    .col-sm-12
+      = f.link_to_add :attachments, class: 'btn btn-info' do
+        %i.fa.fa-plus
+        Add a attachment
   = f.submit nil, class: 'btn btn-sm btn-success'
   = link_to 'Back', :back, class: 'btn btn-sm btn-warning'

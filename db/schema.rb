@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315102325) do
+ActiveRecord::Schema.define(version: 20170327025204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170315102325) do
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "country_id"
-    t.boolean  "chauffeur",           default: false
+    t.boolean  "chauffeur",                default: false
     t.string   "status"
     t.string   "pick_up_address"
     t.string   "pick_up_lat"
@@ -44,8 +44,22 @@ ActiveRecord::Schema.define(version: 20170315102325) do
     t.string   "destination_lng"
     t.float    "estimate_distance"
     t.float    "estimate_price"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "name"
+    t.string   "surname"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "driver_licence"
+    t.datetime "bithrday"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "additional_information"
+    t.string   "state_license_was_issued"
+    t.string   "insurance_carrier"
+    t.string   "policy"
     t.index ["car_id"], name: "index_car_bookings_on_car_id", using: :btree
     t.index ["city_id"], name: "index_car_bookings_on_city_id", using: :btree
     t.index ["country_id"], name: "index_car_bookings_on_country_id", using: :btree

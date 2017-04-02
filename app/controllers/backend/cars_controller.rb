@@ -4,11 +4,15 @@ class Backend::CarsController < Backend::BaseController
 
   def new
     @car = Car.new
+    @cities = City.all
   end
 
   def create
     @car = Car.new(car_params)
     if @car.save
+      if params[:city_ids]
+        @car.cities = City.where(id: params[:city_ids])
+      end
       redirect_to({ action: 'index' }, alert: "Car created")
     else
       render :new
@@ -27,11 +31,18 @@ class Backend::CarsController < Backend::BaseController
   end
 
   def edit
+    @cities = City.all
   end
 
   def update
-    @car.update_attributes(car_params)
-    redirect_to({ action: 'index' }, alert: "Car updated")
+    if @car.update_attributes(car_params)
+      if params[:city_ids]
+        @car.cities = City.where(id: params[:city_ids])
+      end
+      redirect_to({ action: 'index' }, alert: "Car updated")
+    else
+      render :edit, notice: "Error when update car"
+    end
   end
 
   def destroy
@@ -67,6 +78,7 @@ class Backend::CarsController < Backend::BaseController
 
   def car_params
     params.require(:car).permit(:brand, :type, :model, :seats, :power, :top_speed, :engine, :description,
+      :daily_rental, :deposit, :price_per_miles, :daily_miles, :extra_price_per_mile, :fuel_on_city, :fuel_on_hightway,
       attachments_attributes: [:id, :file, :_destroy])
   end
 end
