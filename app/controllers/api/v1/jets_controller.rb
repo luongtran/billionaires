@@ -9,6 +9,10 @@ class Api::V1::JetsController < Api::BaseController
     @jets = Jet.all
   end
 
+  def book
+    render_bad_params 'Not implemented yet'
+  end
+
   private
 
   def search_params

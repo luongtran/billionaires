@@ -5,7 +5,7 @@
     .col-sm-4
       = f.input :model
     .col-sm-4
-      = f.input :type
+      = f.input :type, collection: JetType.all.map{|x| x.name}
   .row
     .col-sm-12
       = f.input :description

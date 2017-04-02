@@ -53,7 +53,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :jets
+      resources :jets do
+        collection do
+          post :book
+        end
+      end
 
       resources :flights do
         collection do

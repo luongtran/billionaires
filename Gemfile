@@ -101,9 +101,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'selenium-webdriver'
+  # gem 'capybara'
+  # gem 'capybara-webkit'
+  # gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'rspec-rails'
   gem 'factory_girl_rails'

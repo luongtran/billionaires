@@ -673,6 +673,94 @@ paths:
                 type: string
               http_status_code:
                 type: integer
+  /jets:
+    get:
+      tags:
+        - Jet
+      summary: Get all Jets
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
+  /jets/book:
+    post:
+      tags:
+        - Jet
+      summary: Booking a Jet
+      security:
+      - access-token: []
+        client: []
+        uid: []
+      parameters:
+        - name: jet_id
+          in: formData
+          required: true
+          type: integer
+        - name: departure_city
+          in: formData
+          required: true
+          type: string
+        - name: departure_date
+          in: formData
+          required: true
+          type: date
+        - name: return_date
+          in: formData
+          required: true
+          type: date
+        - name: arrival_city
+          in: formData
+          required: true
+          type: string
+        - name: guests
+          in: formData
+          required: true
+          type: integer
+        - name: name
+          in: formData
+          type: string
+          description: Customer name
+        - name: surname
+          in: formData
+          type: string
+          description: Customer surname
+        - name: street_address
+          in: formData
+          type: string
+          description: street address
+        - name: city
+          in: formData
+          type: string
+          description: city
+        - name: state
+          in: formData
+          type: string
+          description: state
+        - name: zip
+          in: formData
+          type: integer
+          description: zip
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              http_status_code:
+                type: integer
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
@@ -726,6 +814,27 @@ definitions:
       extra_price:
         type: number
       deposit:
+        type: number
+  Jet:
+    type: object
+    properties:
+      id:
+        type: integer
+      brand:
+        type: string
+      model:
+        type: string
+      type:
+        type: string
+      description:
+        type: text
+      seats:
+        type: integer
+      classification:
+        type: string
+      range:
+        type: number
+      luggage_capacity:
         type: number
   CarBooking:
     type: object

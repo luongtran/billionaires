@@ -51,6 +51,6 @@ class Backend::JetsController < Backend::BaseController
   end
 
   def jet_params
-    params.require(:jet).permit(:brand, :type, :model, :seats, :description, :range, :luggage_capacity)
+    params.require(:jet).permit(:brand, :type, :model, :seats, :description, :range, :luggage_capacity, attachments_attributes: [:id, :file, :_destroy])
   end
 end

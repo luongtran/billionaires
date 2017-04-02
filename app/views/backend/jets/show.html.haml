@@ -4,7 +4,6 @@
     .white-box
       %h3
         = @jet.brand
-        '-
         = @jet.model
       %p= raw @jet.description
       %dl.dl-horizontal
@@ -13,7 +12,7 @@
         %dt Seats
         %dd= @jet.type
         %dt Range
-        %dd= @jet.range + 'natural miles'
+        %dd= @jet.range.to_s + 'natural miles'
         %dt Luggage capacity
         %dd= @jet.luggage_capacity
       = link_to 'Back', :back, class: 'btn btn-sm btn-warning'
