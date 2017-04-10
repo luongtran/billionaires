@@ -24,8 +24,8 @@ class Api::V1::JetBookingsController < Api::BaseController
 
     respond_to do |format|
       if @jet_booking.save
-        format.html { redirect_to @api_v1_jet_booking.url(@jet_booking), notice: 'Jet booking was successfully created.' }
-        format.json { render :show, status: :created, location: api_v1_jet_booking.url(@jet_booking) }
+        format.html { redirect_to @api_v1_jet_booking_url(@jet_booking), notice: 'Jet booking was successfully created.' }
+        format.json { render :show, status: :created, location: api_v1_jet_booking_url(@jet_booking) }
       else
         format.html { render :new }
         format.json { render json: @jet_booking.errors, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class Api::V1::JetBookingsController < Api::BaseController
     respond_to do |format|
       if @jet_booking.update(api_v1_jet_booking_params)
         format.html { redirect_to @jet_booking, notice: 'Jet booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: api_v1_jet_booking.url(@jet_booking) }
+        format.json { render :show, status: :ok, location: api_v1_jet_booking_url(@jet_booking) }
       else
         format.html { render :edit }
         format.json { render json: @jet_booking.errors, status: :unprocessable_entity }
