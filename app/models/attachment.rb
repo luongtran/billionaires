@@ -33,15 +33,15 @@ class Attachment < ApplicationRecord
   end
 
   def full_original_asset_url
-     URI.join(ActionController::Base.asset_host, original_url)
+    "#{ActionController::Base.asset_host}#{original_url}"
   end
 
   def full_medium_url
-    URI.join(ActionController::Base.asset_host, medium_url)
+    "#{ActionController::Base.asset_host}#{medium_url}"
   end
 
   def full_thumb_url
-    URI.join(ActionController::Base.asset_host, thumb_url)
+    "#{ActionController::Base.asset_host}#{thumb_url}"
   end
 
 end
