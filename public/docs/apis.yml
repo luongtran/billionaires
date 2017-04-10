@@ -684,7 +684,7 @@ paths:
         uid: []
       parameters:
         - name: passengers
-          in: formData
+          in: query
           required: true
           type: integer
       responses:
@@ -711,27 +711,27 @@ paths:
         client: []
         uid: []
       parameters:
-        - name: jet_id
+        - name: jet_booking[jet_id]
           in: formData
           required: true
           type: integer
-        - name: departure_city
+        - name: jet_booking[departure_city]
           in: formData
           required: true
           type: string
-        - name: departure_date
+        - name: jet_booking[departure_date]
           in: formData
           required: true
           type: date
-        - name: return_date
+        - name: jet_booking[return_date]
           in: formData
           required: true
           type: date
-        - name: arrival_city
+        - name: jet_booking[arrival_city]
           in: formData
           required: true
           type: string
-        - name: passengers
+        - name: jet_booking[passengers]
           in: formData
           required: true
           type: integer
