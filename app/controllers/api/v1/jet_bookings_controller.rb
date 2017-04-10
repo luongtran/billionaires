@@ -10,7 +10,7 @@ class Api::V1::JetBookingsController < Api::BaseController
 
   # GET /api/v1/jet_bookings/new
   def new
-    @api_v1_jet_booking = JetBooking.new
+    @jet_booking = JetBooking.new
   end
 
   # GET /api/v1/jet_bookings/1/edit
