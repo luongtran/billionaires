@@ -683,6 +683,10 @@ paths:
         client: []
         uid: []
       parameters:
+        - name: passengers
+          in: formData
+          required: true
+          type: integer
       responses:
         '200':
           description: OK
@@ -693,11 +697,15 @@ paths:
                 type: string
               http_status_code:
                 type: integer
-  /jets/book:
-    post:
+              jets:
+                type: array
+                items: 
+                  $ref: '#/definitions/Jet'
+  /jets/jet_bookings:
+    post: 
       tags:
         - Jet
-      summary: Booking a Jet
+      summary: Booking Jet 
       security:
       - access-token: []
         client: []
@@ -723,34 +731,10 @@ paths:
           in: formData
           required: true
           type: string
-        - name: guests
+        - name: passengers
           in: formData
           required: true
           type: integer
-        - name: name
-          in: formData
-          type: string
-          description: Customer name
-        - name: surname
-          in: formData
-          type: string
-          description: Customer surname
-        - name: street_address
-          in: formData
-          type: string
-          description: street address
-        - name: city
-          in: formData
-          type: string
-          description: city
-        - name: state
-          in: formData
-          type: string
-          description: state
-        - name: zip
-          in: formData
-          type: integer
-          description: zip
       responses:
         '200':
           description: OK
@@ -761,6 +745,9 @@ paths:
                 type: string
               http_status_code:
                 type: integer
+              jet_booking:
+                type: object
+                $ref: '#/definitions/JetBooking'
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
@@ -864,3 +851,21 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/City'
+  JetBooking:
+    type: object
+    properties:
+      id:
+        type: integer
+      departure_city:
+        type: string
+      departure_date:
+        type: date
+      arrival_city:
+        type: string
+      arrival_date:
+        type: date
+      passengers:
+        type: integer
+      jet:
+        type: object
+        $ref: '#definitions/Jet'

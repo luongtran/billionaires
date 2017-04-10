@@ -55,6 +55,7 @@ Rails.application.routes.draw do
 
       resources :jets do
         collection do
+          resources :jet_bookings, only: [:create, :update, :destroy]
           post :book
           get :airports
           get :aircraft_types

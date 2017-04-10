@@ -1,0 +1,1 @@
+json.partial! "api_v1_jet_bookings/api_v1_jet_booking", api_v1_jet_booking: @api_v1_jet_booking

@@ -1,0 +1,19 @@
+%h1 Listing api_v1_jet_bookings
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @api_v1_jet_bookings.each do |api_v1_jet_booking|
+      %tr
+        %td= link_to 'Show', api_v1_jet_booking
+        %td= link_to 'Edit', edit_api_v1_jet_booking_path(api_v1_jet_booking)
+        %td= link_to 'Destroy', api_v1_jet_booking, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Jet booking', new_api_v1_jet_booking_path

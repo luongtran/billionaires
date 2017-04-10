@@ -1,0 +1,1 @@
+json.array! @api_v1_jet_bookings, partial: 'api_v1_jet_bookings/api_v1_jet_booking', as: :api_v1_jet_booking
