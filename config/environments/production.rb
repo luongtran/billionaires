@@ -94,4 +94,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_controller.asset_host = 'http://117.3.36.11:5000' # production NEED TO CHANGE
 end
