@@ -24,7 +24,7 @@ class Api::V1::JetBookingsController < Api::BaseController
 
     respond_to do |format|
       if @jet_booking.save
-        format.html { redirect_to @api_v1_jet_booking_url(@jet_booking), notice: 'Jet booking was successfully created.' }
+        
         format.json { render :show, status: :created, location: api_v1_jet_booking_url(@jet_booking) }
       else
         format.html { render :new }
