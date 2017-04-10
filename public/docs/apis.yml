@@ -868,4 +868,4 @@ definitions:
         type: integer
       jet:
         type: object
-        $ref: '#definitions/Jet'
+        $ref: '#/definitions/Jet'
