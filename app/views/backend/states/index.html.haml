@@ -30,9 +30,6 @@
                     = link_to edit_backend_state_path(state), class: "btn btn-primary btn-sm" do
                       %i.fa.fa-pencil
                       Edit
-                    = link_to backend_state_path(state), class: "btn btn-success btn-sm" do
-                      %i.fa.fa-state
-                      Show
                     = link_to backend_state_path(state), data: {method: 'delete', confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do
                       %i.fa.fa-trash
                       Destroy

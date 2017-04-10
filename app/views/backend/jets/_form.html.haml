@@ -11,11 +11,11 @@
       = f.input :description
   .row
     .col-sm-4
-      = f.input :seats
+      = f.input :seats, hint: 'Passengers'
     .col-sm-4
-      = f.input :range
+      = f.input :range, hint: 'Maximum range(km)'
     .col-sm-4
-      = f.input :luggage_capacity
+      = f.input :luggage_capacity, '(kg)'
   .row
     .col-md-12
       %h3 Attachments

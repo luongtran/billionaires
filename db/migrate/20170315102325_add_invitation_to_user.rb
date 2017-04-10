@@ -10,9 +10,5 @@ class AddInvitationToUser < ActiveRecord::Migration[5.0]
       t.string   :invited_by_type
     end
     add_index :users, :invitation_token, unique: true
-    # Allow null encrypted_password
-    change_column_null :users, :encrypted_password, :string, true
-    # Allow null password_salt (add it if you are using Devise's encryptable module)
-    change_column_null :users, :password_salt, :string, true
   end
 end

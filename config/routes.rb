@@ -56,12 +56,14 @@ Rails.application.routes.draw do
       resources :jets do
         collection do
           post :book
+          get :airports
+          get :aircraft_types
+          get :flight_calculator
         end
       end
 
       resources :flights do
         collection do
-          post :distance_calculate
           post :book
         end
       end

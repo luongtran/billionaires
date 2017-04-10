@@ -6,6 +6,6 @@ class State < ApplicationRecord
   after_create :create_location
 
   def create_location
-    self.build_location.save(validate :false)
+    self.build_location.save
   end
 end

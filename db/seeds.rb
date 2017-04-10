@@ -270,4 +270,26 @@ JetType.create(
   description: 'Jumbo Jet is well known as a wide body of commercial airline and cargo aircraft. Boeing 747 is amazing with hump-like upper deck to serve as a first class lounge and which allows easily converted to cargo carrier.'
   )
 
-State.create(name: 'NY', cities: [{name: "New York"},{name: "Albany"}])
+State.create(name: 'New York', cities_attributes: [{name: "New York City"}], location_attributes: {lat: 40.7058249,lng: -74.1184296})
+State.create(name: 'Caliornia', cities_attributes: [{name: "Los Angeles"},{name: 'San Diego'},{name: 'San Francisco'}], location_attributes: {lat: 37.1953602,lng: -119.4891492})
+State.create(name: 'Florida', cities_attributes: [{name: "Miami"},{name: 'Tampa'},{name: 'Orlando'}], location_attributes: {lat: 28.9985318140518,lng: -81.97998046875})
+
+
+Jet.create(type: "Very Light Jets", brand: "Honda", model: "Jet", description: "Honda Jet is a first Aircraft developed by company...", 
+  sleeps: 0, passengers: 4, range: 1009, luggage_capacity: 66)
+
+Jet.create(type: "Heavy Jets", brand: "Gulfstream ", model: "G650", description: "Functionality is a mainstay of the Gulfstream G650...",  
+  sleeps: 10, passengers: 19, range: 12_964, luggage_capacity: 130, aircraft_profile: "Gulfstream G650")
+
+Jet.create(type: "Heavy Jets", brand: "Gulfstream ", model: "G600", description: "Functionality is a mainstay of the Gulfstream G600...",  
+  sleeps: 9, passengers: 19, range: 11_482, luggage_capacity: 130, aircraft_profile: "Gulfstream G600")
+
+Jet.create(type: "Heavy Jets", brand: "Gulfstream ", model: "G500", description: "Functionality is a mainstay of the Gulfstream G500...",  
+  sleeps: 8, passengers: 19, range: 9_260, luggage_capacity: 130, aircraft_profile: "Gulfstream G500")
+
+Jet.create(type: "Heavy Jets", brand: "Gulfstream ", model: "G550", description: "Functionality is a mainstay of the Gulfstream G550...",  
+  sleeps: 8, passengers: 19, range: 12_501, luggage_capacity: 130, aircraft_profile: "Gulfstream G550")
+
+Jet.create(type: "Super Midsize Jets", brand: "Gulfstream ", model: "G280", description: "Functionality is a mainstay of the Gulfstream G280...",  
+  sleeps: 5, passengers: 10, range: 6_670, luggage_capacity: 130, aircraft_profile: "Gulfstream G280")
+
