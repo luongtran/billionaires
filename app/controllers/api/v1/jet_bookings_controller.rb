@@ -1,4 +1,4 @@
-class Api::V1::JetBookingsController < ApplicationController
+class Api::V1::JetBookingsController < Api::BaseController
   before_action :authenticate_user!
   before_action :set_api_v1_jet_booking, only: [:show, :edit, :update, :destroy]
 
