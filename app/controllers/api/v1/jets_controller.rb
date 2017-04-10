@@ -6,13 +6,10 @@ class Api::V1::JetsController < Api::BaseController
   # ==== OUTPUT ====
   # listing jets (type, free slots, image) with estimate flight hours, price
   def index
-    jets = Jet.find_each(conditions: 'passengers > ?', search_params[:passengers]) do |jet|
-      next if !jet.
-    end
-    jets.
+    @jets = Jet.where(conditions: 'passengers > ?', search_params[:passengers]) 
   end
 
-  def book
+  def boo
     render_bad_params 'Not implemented yet'
   end
 
