@@ -685,7 +685,6 @@ paths:
       parameters:
         - name: passengers
           in: query
-          required: true
           type: integer
       responses:
         '200':

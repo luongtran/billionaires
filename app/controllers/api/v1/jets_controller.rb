@@ -6,7 +6,11 @@ class Api::V1::JetsController < Api::BaseController
   # ==== OUTPUT ====
   # listing jets (type, free slots, image) with estimate flight hours, price
   def index
-    @jets = Jet.where('seats > ?', search_params[:passengers]) 
+    if search_params[:passengers]
+      @jets = Jet.where('seats > ?', search_params[:passengers]) 
+    else
+      @jets = Jet.all
+    end
   end
 
   def book
