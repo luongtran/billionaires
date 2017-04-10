@@ -161,18 +161,14 @@ ActiveRecord::Schema.define(version: 20170410101908) do
     t.string   "type"
     t.string   "brand"
     t.string   "model"
-    t.string   "aircraft_profile"
     t.text     "description"
     t.string   "classification"
-    t.integer  "passengers"
-    t.integer  "sleeps"
+    t.integer  "seats"
     t.integer  "range"
     t.integer  "luggage_capacity"
-    t.integer  "max_operating_speed"
-    t.integer  "max_takeoff_weight"
     t.float    "price_per_hours"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "locations", force: :cascade do |t|

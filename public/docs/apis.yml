@@ -699,13 +699,13 @@ paths:
                 type: integer
               jets:
                 type: array
-                items: 
+                items:
                   $ref: '#/definitions/Jet'
   /jets/jet_bookings:
-    post: 
+    post:
       tags:
         - Jet
-      summary: Booking Jet 
+      summary: Booking Jet
       security:
       - access-token: []
         client: []
